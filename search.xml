@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>第一个博客</title>
-    <url>/2021/03/19/%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h2 id="可能车间才能若"><a href="#可能车间才能若" class="headerlink" title="可能车间才能若"></a>可能车间才能若</h2><p>了才能看见人呢ckernklmlkwclkemecemkl</p>
-<span id="more"></span>
-
-<p>刺客来了乘客们零库存me可怜虫cerfrtvrVR</p>
-<p>人</p>
-<p>r</p>
-<p> r</p>
-<p>r </p>
-]]></content>
+    <title>VUE框架</title>
+    <url>/2021/03/20/VUE%E6%A1%86%E6%9E%B6/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>VUE框架</tag>
+      </tags>
   </entry>
   <entry>
     <title>Hello World</title>
     <url>/2021/03/19/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
