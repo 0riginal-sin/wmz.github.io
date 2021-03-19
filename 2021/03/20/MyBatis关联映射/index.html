@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="1.关联映射(多表查询)数据库中多表之间存在着三种关系，如图所示。 123多对多： 程序员&lt;------&gt;项目     用户---------&gt;角色一对多:   班级------&gt;学生      学校------&gt;班级      帅哥-----&gt;多个女朋友     土豪---多辆豪车一对一:   学生-----&gt;学位证     人------&gt;DNA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MyBatis关联映射">
+<meta property="og:url" content="http://example.com/2021/03/20/MyBatis%E5%85%B3%E8%81%94%E6%98%A0%E5%B0%84/index.html">
+<meta property="og:site_name" content="original-sin">
+<meta property="og:description" content="1.关联映射(多表查询)数据库中多表之间存在着三种关系，如图所示。 123多对多： 程序员&lt;------&gt;项目     用户---------&gt;角色一对多:   班级------&gt;学生      学校------&gt;班级      帅哥-----&gt;多个女朋友     土豪---多辆豪车一对一:   学生-----&gt;学位证     人------&gt;DNA">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190904174614140.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWNlTGl1X2NvZGU=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190904174839717.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWNlTGl1X2NvZGU=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190904175125956.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWNlTGl1X2NvZGU=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/201909041751312.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190904175159578.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190904175443864.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/201909041754495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWNlTGl1X2NvZGU=,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190904175505552.png">
+<meta property="article:published_time" content="2021-03-19T17:23:04.000Z">
+<meta property="article:modified_time" content="2021-03-19T18:39:01.113Z">
+<meta property="article:author" content="original-sin">
+<meta property="article:tag" content="MyBatis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190904174614140.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWNlTGl1X2NvZGU=,size_16,color_FFFFFF,t_70">
+
+
+<link rel="canonical" href="http://example.com/2021/03/20/MyBatis%E5%85%B3%E8%81%94%E6%98%A0%E5%B0%84/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>MyBatis关联映射 | original-sin</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">original-sin</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">5</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E5%85%B3%E8%81%94%E6%98%A0%E5%B0%84-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.</span> <span class="nav-text">1.关联映射(多表查询)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%85%B3%E8%81%94%E6%98%A0%E5%B0%84%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">2.关联映射作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E8%81%94-%E4%BA%86%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">2. 一对一关联(了解)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E9%9C%80%E6%B1%82"><span class="nav-number">3.1.</span> <span class="nav-text">2.1. 需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">3.2.</span> <span class="nav-text">2.2.创建数据表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E5%AE%9A%E4%B9%89%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="nav-number">3.3.</span> <span class="nav-text">2.3.定义实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E5%AE%9A%E4%B9%89sql%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6classMapper-xml"><span class="nav-number">3.4.</span> <span class="nav-text">2.4.定义sql映射文件classMapper.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%B1%BB"><span class="nav-number">3.5.</span> <span class="nav-text">2.5 编写单元测试类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-MyBatis%E4%B8%80%E5%AF%B9%E4%B8%80%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93"><span class="nav-number">3.6.</span> <span class="nav-text">2.6 MyBatis一对一关联查询总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">2. 一对多关联（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E9%9C%80%E6%B1%82-1"><span class="nav-number">4.1.</span> <span class="nav-text">2.1.需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E5%AE%9A%E4%B9%89%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="nav-number">4.2.</span> <span class="nav-text">2.2.定义实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E4%BF%AE%E6%94%B9sql%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6classMapper-xml"><span class="nav-number">4.3.</span> <span class="nav-text">2.3.修改sql映射文件classMapper.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E7%BC%96%E5%86%99%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%B1%BB"><span class="nav-number">4.4.</span> <span class="nav-text">2.4. 编写单元测试类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-MyBatis%E4%B8%80%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2%E6%80%BB%E7%BB%93"><span class="nav-number">4.5.</span> <span class="nav-text">2.5. MyBatis一对多关联查询总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%85%B3%E8%81%94%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">3. 多对多关联（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E9%9C%80%E6%B1%82"><span class="nav-number">5.1.</span> <span class="nav-text">3.1 需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%87%86%E5%A4%87SQL%E8%AF%AD%E5%8F%A5"><span class="nav-number">5.2.</span> <span class="nav-text">3.2. 准备SQL语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-User%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="nav-number">5.3.</span> <span class="nav-text">3.3 User实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-Role%E5%AE%9E%E4%BD%93%E7%B1%BB"><span class="nav-number">5.4.</span> <span class="nav-text">3.4 Role实体类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-UserMapper"><span class="nav-number">5.5.</span> <span class="nav-text">3.5 UserMapper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-UserMapper-xml"><span class="nav-number">5.6.</span> <span class="nav-text">3.6 UserMapper.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-%E6%B5%8B%E8%AF%95"><span class="nav-number">5.7.</span> <span class="nav-text">3.7 测试</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="original-sin"
+      src="/images/tx36039.gif">
+  <p class="site-author-name" itemprop="name">original-sin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/0riginal-sin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;0riginal-sin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:w16676666067@163.com" title="E-Mail → mailto:w16676666067@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/" title="Weibo → https:&#x2F;&#x2F;weibo.com" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/" title="Google → https:&#x2F;&#x2F;plus.google.com" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/" title="Twitter → https:&#x2F;&#x2F;twitter.com" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/" title="YouTube → https:&#x2F;&#x2F;youtube.com" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/" title="Instagram → https:&#x2F;&#x2F;instagram.com" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="skype:?call|chat" title="Skype → skype:?call|chat" rel="noopener" target="_blank"><i class="fab fa-skype fa-fw"></i>Skype</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://bnmqaz.cn/" title="https:&#x2F;&#x2F;bnmqaz.cn" rel="noopener" target="_blank">友链</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/MyBatis%E5%85%B3%E8%81%94%E6%98%A0%E5%B0%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx36039.gif">
+      <meta itemprop="name" content="original-sin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="original-sin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MyBatis关联映射
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-20 01:23:04 / 修改时间：02:39:01" itemprop="dateCreated datePublished" datetime="2021-03-20T01:23:04+08:00">2021-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="1-关联映射-多表查询"><a href="#1-关联映射-多表查询" class="headerlink" title="1.关联映射(多表查询)"></a>1.关联映射(多表查询)</h1><p>数据库中多表之间存在着三种关系，如图所示。<br><img src="https://img-blog.csdnimg.cn/20190904174614140.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWNlTGl1X2NvZGU=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">多对多： 程序员&lt;------&gt;项目     用户---------&gt;角色</span><br><span class="line">一对多:   班级------&gt;学生      学校------&gt;班级      帅哥-----&gt;多个女朋友     土豪---多辆豪车</span><br><span class="line">一对一:   学生-----&gt;学位证     人------&gt;DNA        公民----身份证           房子--产权证</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>从图可以看出，系统设计的三种实体关系分别为：多对多、一对多和一对一关系。注意：一对多关系可以看为两种：  即一对多，多对一。</p>
+<blockquote>
+<p>现实生活中实体和实体之间的关系：  一对多     多对多    一对一</p>
+</blockquote>
+<p>关系：<strong>是双向的！！</strong></p>
+<h1 id="2-关联映射作用"><a href="#2-关联映射作用" class="headerlink" title="2.关联映射作用"></a>2.关联映射作用</h1><p>在现实的项目中进行数据库建模时，我们要遵循数据库设计范式的要求，会对现实中的业务模型进行拆分，封装在不同的数据表中，<strong>表与表之间存在着一对多或是多对多的对应关系</strong>。进而，我们对数据库的增删改查操作的主体，也就从<strong>单表变成了多表</strong>。那么Mybatis中是如何实现这种多表关系的映射呢？</p>
+<p><strong>查询结果集ResultMap</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">resultMap元素是 MyBatis中最重要最强大的元素。它就是让你远离90%的需要从结果 集中取出数据的JDBC代码的那个东西，而且在一些情形下允许你做一些 JDBC 不支持的事 情。	</span><br><span class="line"></span><br><span class="line">有朋友会问，之前的示例中我们没有用到结果集，不是也可以正确地将数据表中的数据映射到Java对象的属性中吗？是的。这正是resultMap元素设计的初衷，就是简单语句不需要明确的结果映射，而很多复杂语句确实需要描述它们的关系。</span><br></pre></td></tr></table></figure>
+
+<p><strong>resultMap元素中，允许有以下直接子元素：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">id － 作用与result相同，同时可以标识出用这个字段值可以区分其他对象实例。可以理解为数据表中的主键，可以定位数据表中唯一一笔记录</span><br><span class="line">result － 将数据表中的字段注入到Java对象属性中</span><br><span class="line"></span><br><span class="line">association － 关联，简单的讲，就是“有一个”关系，如“用户”有一个“帐号”   has a </span><br><span class="line">collection － 集合，顾名思议，就是“有很多”关系，如“客户”有很多“订单”    has many</span><br></pre></td></tr></table></figure>
+
+<p>每个元素的用法及属性我会在下面结合使用进行讲解。</p>
+<h1 id="2-一对一关联-了解"><a href="#2-一对一关联-了解" class="headerlink" title="2. 一对一关联(了解)"></a>2. 一对一关联(了解)</h1><h2 id="2-1-需求"><a href="#2-1-需求" class="headerlink" title="2.1. 需求"></a>2.1. 需求</h2><p>根据班级id查询班级信息(带老师的信息)<br><img src="https://img-blog.csdnimg.cn/20190904174839717.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWNlTGl1X2NvZGU=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="2-2-创建数据表"><a href="#2-2-创建数据表" class="headerlink" title="2.2.创建数据表"></a>2.2.创建数据表</h2><p>创建一张教师表和班级表，这里我们假设一个老师只负责教一个班，那么老师和班级之间的关系就是一种一对一的关系。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> teacher(</span><br><span class="line">    t_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT, </span><br><span class="line">    t_name <span class="type">VARCHAR</span>(<span class="number">20</span>)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> class(</span><br><span class="line">    c_id <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY AUTO_INCREMENT, </span><br><span class="line">    c_name <span class="type">VARCHAR</span>(<span class="number">20</span>), </span><br><span class="line">    teacher_id <span class="type">INT</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> class <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span> fk_teacher_id <span class="keyword">FOREIGN</span> KEY (teacher_id) <span class="keyword">REFERENCES</span> teacher(t_id);    </span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> teacher(t_name) <span class="keyword">VALUES</span>(<span class="string">&#x27;teacher1&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> teacher(t_name) <span class="keyword">VALUES</span>(<span class="string">&#x27;teacher2&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> class(c_name, teacher_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;class_a&#x27;</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> class(c_name, teacher_id) <span class="keyword">VALUES</span>(<span class="string">&#x27;class_b&#x27;</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-定义实体类"><a href="#2-3-定义实体类" class="headerlink" title="2.3.定义实体类"></a>2.3.定义实体类</h2><p>1、Teacher类，Teacher类是teacher表对应的实体类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 定义实体类的属性，与teacher表中的字段对应</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> id; <span class="comment">// id===&gt;t_id</span></span><br><span class="line">	<span class="keyword">private</span> String name; <span class="comment">// name===&gt;t_name</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;Teacher [id=&quot;</span> + id + <span class="string">&quot;, name=&quot;</span> + name + <span class="string">&quot;]&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　2、Classes类，Classes类是class表对应的实体类
+　</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Classes</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 定义实体类的属性，与class表中的字段对应</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> id; <span class="comment">// id===&gt;c_id</span></span><br><span class="line">	<span class="keyword">private</span> String name; <span class="comment">// name===&gt;c_name</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * class表中有一个teacher_id字段，所以在Classes类中定义一个teacher属性，</span></span><br><span class="line"><span class="comment">	 * 用于维护teacher和class之间的一对一关系，通过这个teacher属性就可以知道这个班级是由哪个老师负责的</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">private</span> Teacher teacher;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Teacher <span class="title">getTeacher</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> teacher;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTeacher</span><span class="params">(Teacher teacher)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.teacher = teacher;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;Classes [id=&quot;</span> + id + <span class="string">&quot;, name=&quot;</span> + name + <span class="string">&quot;, teacher=&quot;</span> + teacher + <span class="string">&quot;]&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-4-定义sql映射文件classMapper-xml"><a href="#2-4-定义sql映射文件classMapper-xml" class="headerlink" title="2.4.定义sql映射文件classMapper.xml"></a>2.4.定义sql映射文件classMapper.xml</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">  <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">  <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.mybatis.mapper.ClassMapper&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">        </span></span><br><span class="line"><span class="comment">        select * from class c, teacher t where c.teacher_id=t.t_id and c.c_id=1</span></span><br><span class="line"><span class="comment">    --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getClass1&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;int&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;ClassResultMap1&quot;</span>&gt;</span></span><br><span class="line">        select * from class c, teacher t where c.teacher_id=t.t_id and c.c_id=#&#123;id&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 使用resultMap映射实体类和字段之间的一一对应关系 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">&quot;Classes&quot;</span> <span class="attr">id</span>=<span class="string">&quot;ClassResultMap1&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> <span class="attr">column</span>=<span class="string">&quot;c_id&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;name&quot;</span> <span class="attr">column</span>=<span class="string">&quot;c_name&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">&quot;teacher&quot;</span> <span class="attr">javaType</span>=<span class="string">&quot;Teacher&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span> <span class="attr">column</span>=<span class="string">&quot;t_id&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;name&quot;</span> <span class="attr">column</span>=<span class="string">&quot;t_name&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">association</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">   </span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-5-编写单元测试类"><a href="#2-5-编写单元测试类" class="headerlink" title="2.5 编写单元测试类"></a>2.5 编写单元测试类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Classes c1 = mapper.getClass1(<span class="number">1</span>);</span><br><span class="line">	System.out.println(c1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Classes c1 = mapper.getClass2(<span class="number">1</span>);</span><br><span class="line">	System.out.println(c1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-6-MyBatis一对一关联查询总结"><a href="#2-6-MyBatis一对一关联查询总结" class="headerlink" title="2.6 MyBatis一对一关联查询总结"></a>2.6 MyBatis一对一关联查询总结</h2><p>MyBatis中使用association（有一个）标签来解决一对一的关联查询，association标签可用的属性如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">property:对象属性的名称</span><br><span class="line">javaType:对象属性的类型</span><br><span class="line">column:所对应的外键字段名称</span><br><span class="line">select:使用另一个查询封装的结果</span><br></pre></td></tr></table></figure>
+<h1 id="2-一对多关联（重点）"><a href="#2-一对多关联（重点）" class="headerlink" title="2. 一对多关联（重点）"></a>2. 一对多关联（重点）</h1><p><img src="https://img-blog.csdnimg.cn/20190904175125956.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWNlTGl1X2NvZGU=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/201909041751312.png" alt="在这里插入图片描述"></p>
+<h2 id="2-1-需求-1"><a href="#2-1-需求-1" class="headerlink" title="2.1.需求"></a>2.1.需求</h2><p>根据classId查询对应的班级信息,包括学生<br><img src="https://img-blog.csdnimg.cn/20190904175159578.png" alt="在这里插入图片描述"></p>
+<h2 id="2-2-定义实体类"><a href="#2-2-定义实体类" class="headerlink" title="2.2.定义实体类"></a>2.2.定义实体类</h2><p>1、Student类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 学生实体</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">long</span> sId;</span><br><span class="line">  <span class="keyword">private</span> String sName;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">long</span> sAge;</span><br><span class="line">  <span class="keyword">private</span> String sEmail;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">long</span> classId;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//额外准备一个班级对象</span></span><br><span class="line">  <span class="keyword">private</span> Classes classes;  <span class="comment">//体现一个学生在一个班级中</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Classes <span class="title">getClasses</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> classes;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setClasses</span><span class="params">(Classes classes)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.classes = classes;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getSId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sId;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSId</span><span class="params">(<span class="keyword">long</span> sId)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.sId = sId;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getSName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSName</span><span class="params">(String sName)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.sName = sName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getSAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sAge;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSAge</span><span class="params">(<span class="keyword">long</span> sAge)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.sAge = sAge;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getSEmail</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sEmail;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSEmail</span><span class="params">(String sEmail)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.sEmail = sEmail;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getClassId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> classId;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setClassId</span><span class="params">(<span class="keyword">long</span> classId)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.classId = classId;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Student&#123;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;sId=&quot;</span> + sId +</span><br><span class="line">            <span class="string">&quot;, sName=&#x27;&quot;</span> + sName + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">            <span class="string">&quot;, sAge=&quot;</span> + sAge +</span><br><span class="line">            <span class="string">&quot;, sEmail=&#x27;&quot;</span> + sEmail + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">            <span class="string">&quot;, classId=&quot;</span> + classId +</span><br><span class="line">            <span class="string">&quot;, classes=&quot;</span> + classes +</span><br><span class="line">            <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、修改Classes类，添加一个List<Student> students属性，使用一个List<Student>集合属性表示班级拥有的学生，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bruceliu.bean;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 班级实体类  1的一方</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Classes</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">long</span> cId;</span><br><span class="line">  <span class="keyword">private</span> String cName;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//表示含义 1个班级下有多个学生</span></span><br><span class="line">  <span class="keyword">private</span> List&lt;Student&gt; students; <span class="comment">//学生集合  多的一方</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getCId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> cId;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCId</span><span class="params">(<span class="keyword">long</span> cId)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.cId = cId;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getCName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> cName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCName</span><span class="params">(String cName)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.cName = cName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> List&lt;Student&gt; <span class="title">getStudents</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> students;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStudents</span><span class="params">(List&lt;Student&gt; students)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.students = students;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Classes&#123;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;cId=&quot;</span> + cId +</span><br><span class="line">            <span class="string">&quot;, cName=&#x27;&quot;</span> + cName + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">            <span class="string">&quot;, students=&quot;</span> + students +</span><br><span class="line">            <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-3-修改sql映射文件classMapper-xml"><a href="#2-3-修改sql映射文件classMapper-xml" class="headerlink" title="2.3.修改sql映射文件classMapper.xml"></a>2.3.修改sql映射文件classMapper.xml</h2><p>添加如下的SQL映射信息</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.bruceliu.mapper.ClassesMapper&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--配置1对多 结果集映射--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;classMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;Classes&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--主键--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;cId&quot;</span> <span class="attr">column</span>=<span class="string">&quot;C_ID&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;cName&quot;</span> <span class="attr">column</span>=<span class="string">&quot;c_name&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!--配置一个包含关系 “有很多”关系 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">&quot;students&quot;</span> <span class="attr">ofType</span>=<span class="string">&quot;Student&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;sId&quot;</span> <span class="attr">column</span>=<span class="string">&quot;s_id&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;sName&quot;</span> <span class="attr">column</span>=<span class="string">&quot;s_name&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;sAge&quot;</span> <span class="attr">column</span>=<span class="string">&quot;s_age&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;sEmail&quot;</span> <span class="attr">column</span>=<span class="string">&quot;s_email&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;classId&quot;</span> <span class="attr">column</span>=<span class="string">&quot;class_id&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getById&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;classMap&quot;</span>&gt;</span></span><br><span class="line">        SELECT C.*,S.* FROM classes C INNER JOIN student S on C.c_id=S.class_id where C.c_id=#&#123;classId&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="2-4-编写单元测试类"><a href="#2-4-编写单元测试类" class="headerlink" title="2.4. 编写单元测试类"></a>2.4. 编写单元测试类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bruceliu.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.bruceliu.bean.Classes;</span><br><span class="line"><span class="keyword">import</span> com.bruceliu.mapper.ClassesMapper;</span><br><span class="line"><span class="keyword">import</span> com.bruceliu.utils.MyBatisUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> bruceliu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span> 2019-07-09 10:06</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span> 测试1对多</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestOne2Many</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    SqlSession session=<span class="keyword">null</span>;</span><br><span class="line">    ClassesMapper classesMapper=<span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        session = MyBatisUtils.getSession();</span><br><span class="line">        classesMapper = session.getMapper(ClassesMapper.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Classes c = classesMapper.getById(<span class="number">1L</span>);</span><br><span class="line">        System.out.println(c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destory</span><span class="params">()</span></span>&#123;</span><br><span class="line">        session.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-5-MyBatis一对多关联查询总结"><a href="#2-5-MyBatis一对多关联查询总结" class="headerlink" title="2.5. MyBatis一对多关联查询总结"></a>2.5. MyBatis一对多关联查询总结</h2><p>MyBatis中使用collection标签来解决一对多的关联查询，ofType属性指定集合中元素的对象类型。</p>
+<h1 id="3-多对多关联（重点）"><a href="#3-多对多关联（重点）" class="headerlink" title="3. 多对多关联（重点）"></a>3. 多对多关联（重点）</h1><h2 id="3-1-需求"><a href="#3-1-需求" class="headerlink" title="3.1 需求"></a>3.1 需求</h2><p><img src="https://img-blog.csdnimg.cn/20190904175443864.png" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/201909041754495.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWNlTGl1X2NvZGU=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="3-2-准备SQL语句"><a href="#3-2-准备SQL语句" class="headerlink" title="3.2. 准备SQL语句"></a>3.2. 准备SQL语句</h2><p><img src="https://img-blog.csdnimg.cn/20190904175505552.png" alt="在这里插入图片描述"></p>
+<h2 id="3-3-User实体类"><a href="#3-3-User实体类" class="headerlink" title="3.3 User实体类"></a>3.3 User实体类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bruceliu.bean;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">long</span> uId;</span><br><span class="line">  <span class="keyword">private</span> String uName;</span><br><span class="line">  <span class="keyword">private</span> String uSex;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">long</span> uAge;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> List&lt;Role&gt; roles; <span class="comment">//一个用户下面多个角色</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getUId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> uId;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUId</span><span class="params">(<span class="keyword">long</span> uId)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.uId = uId;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getUName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> uName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUName</span><span class="params">(String uName)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.uName = uName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getUSex</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> uSex;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUSex</span><span class="params">(String uSex)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.uSex = uSex;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getUAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> uAge;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUAge</span><span class="params">(<span class="keyword">long</span> uAge)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.uAge = uAge;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> List&lt;Role&gt; <span class="title">getRoles</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> roles;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRoles</span><span class="params">(List&lt;Role&gt; roles)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.roles = roles;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;User&#123;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;uId=&quot;</span> + uId +</span><br><span class="line">            <span class="string">&quot;, uName=&#x27;&quot;</span> + uName + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">            <span class="string">&quot;, uSex=&#x27;&quot;</span> + uSex + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">            <span class="string">&quot;, uAge=&quot;</span> + uAge +</span><br><span class="line">            <span class="string">&quot;, roles=&quot;</span> + roles +</span><br><span class="line">            <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-Role实体类"><a href="#3-4-Role实体类" class="headerlink" title="3.4 Role实体类"></a>3.4 Role实体类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bruceliu.bean;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Role</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">long</span> rId;</span><br><span class="line">  <span class="keyword">private</span> String rName;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getRId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rId;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRId</span><span class="params">(<span class="keyword">long</span> rId)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.rId = rId;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getRName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> rName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRName</span><span class="params">(String rName)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.rName = rName;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Role&#123;&quot;</span> +</span><br><span class="line">            <span class="string">&quot;rId=&quot;</span> + rId +</span><br><span class="line">            <span class="string">&quot;, rName=&#x27;&quot;</span> + rName + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">            <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-5-UserMapper"><a href="#3-5-UserMapper" class="headerlink" title="3.5 UserMapper"></a>3.5 UserMapper</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bruceliu.mapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.bruceliu.bean.User;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> bruceliu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span> 2019-07-09 11:10</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//1.根据ID查询user(同时关联查询一下role集合信息)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">getUserByid</span><span class="params">(<span class="keyword">long</span> uid)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-6-UserMapper-xml"><a href="#3-6-UserMapper-xml" class="headerlink" title="3.6 UserMapper.xml"></a>3.6 UserMapper.xml</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">mapper</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="meta-string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.bruceliu.mapper.UserMapper&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;userMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;User&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;uId&quot;</span> <span class="attr">column</span>=<span class="string">&quot;u_id&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;uAge&quot;</span> <span class="attr">column</span>=<span class="string">&quot;u_age&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;uName&quot;</span> <span class="attr">column</span>=<span class="string">&quot;u_name&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;uSex&quot;</span> <span class="attr">column</span>=<span class="string">&quot;u_sex&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">&lt;!--一个用户多个角色--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">&quot;roles&quot;</span> <span class="attr">ofType</span>=<span class="string">&quot;Role&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">&quot;rId&quot;</span> <span class="attr">column</span>=<span class="string">&quot;r_id&quot;</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">&quot;rName&quot;</span> <span class="attr">column</span>=<span class="string">&quot;r_name&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getUserByid&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;userMap&quot;</span>&gt;</span></span><br><span class="line">        SELECT * FROM `user` U INNER JOIN role_user RU ON U.u_id=RU.uu__id INNER JOIN role R ON RU.rr_id=R.r_id</span><br><span class="line">where U.u_id=#&#123;uid&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-7-测试"><a href="#3-7-测试" class="headerlink" title="3.7 测试"></a>3.7 测试</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bruceliu.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.bruceliu.bean.Student;</span><br><span class="line"><span class="keyword">import</span> com.bruceliu.bean.User;</span><br><span class="line"><span class="keyword">import</span> com.bruceliu.mapper.StudentMapper;</span><br><span class="line"><span class="keyword">import</span> com.bruceliu.mapper.UserMapper;</span><br><span class="line"><span class="keyword">import</span> com.bruceliu.utils.MyBatisUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.junit.After;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> bruceliu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@create</span> 2019-07-09 11:20</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TesMany2Many</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    SqlSession session=<span class="keyword">null</span>;</span><br><span class="line">    UserMapper userMapper=<span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">        session = MyBatisUtils.getSession();</span><br><span class="line">        userMapper = session.getMapper(UserMapper.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *   测试根据人查询所属的角色集合</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        User user = userMapper.getUserByid(<span class="number">1</span>);</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@After</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destory</span><span class="params">()</span></span>&#123;</span><br><span class="line">        session.close();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="original-sin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="original-sin 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MyBatis/" rel="tag"># MyBatis</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E4%B8%80)-SpringMVC%E6%A6%82%E8%BF%B0/" rel="prev" title="SpringMVC概述">
+                  <i class="fa fa-chevron-left"></i> SpringMVC概述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/20/1.maven%E7%9A%84tomcat%E6%8F%92%E4%BB%B6/" rel="next" title="maven的tomcat插件">
+                  maven的tomcat插件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">original-sin</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>  -->
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":210,"height":500,"hOffset":0,"vOffset":-70},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script type="text/javascript" src="/js/love.js"></script>
+</html>
