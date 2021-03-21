@@ -30,11 +30,13 @@
 <meta property="og:site_name" content="original-sin">
 <meta property="og:description" content="java 基础语法1.注释 单行注释： 1&#x2F;&#x2F; :表示单行注释 多行注释： 1234&#x2F;*内容   *&#x2F;&#x2F;**&#x2F;: 表示多行注释 文档注释： 12345&#x2F;***  内容*  内容*&#x2F;&#x2F;** 内容 *&#x2F;: 表示多行注释">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/0riginal-sin/image.github.io/main/if%E5%88%A4%E6%96%AD.jpg">
 <meta property="article:published_time" content="2021-03-21T09:20:44.000Z">
-<meta property="article:modified_time" content="2021-03-21T18:14:39.021Z">
+<meta property="article:modified_time" content="2021-03-21T19:27:10.272Z">
 <meta property="article:author" content="original-sin">
 <meta property="article:tag" content="java基础">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/0riginal-sin/image.github.io/main/if%E5%88%A4%E6%96%AD.jpg">
 
 
 <link rel="canonical" href="http://example.com/2021/03/21/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
@@ -188,7 +190,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">java 基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%B3%A8%E9%87%8A"><span class="nav-number">1.1.</span> <span class="nav-text">1.注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-API-%E6%96%87%E6%A1%A3"><span class="nav-number">2.</span> <span class="nav-text">Java API 文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97%E4%B8%8E%E4%BF%9D%E7%95%99%E5%AD%97"><span class="nav-number">3.</span> <span class="nav-text">关键字与保留字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="nav-number">4.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%9A"><span class="nav-number">5.1.</span> <span class="nav-text">常见的运算符：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.1.1.</span> <span class="nav-text">算术运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.1.2.</span> <span class="nav-text">赋值运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.1.3.</span> <span class="nav-text">比较运算符</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">java 基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%B3%A8%E9%87%8A"><span class="nav-number">1.1.</span> <span class="nav-text">1.注释</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-API-%E6%96%87%E6%A1%A3"><span class="nav-number">2.</span> <span class="nav-text">Java API 文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97%E4%B8%8E%E4%BF%9D%E7%95%99%E5%AD%97"><span class="nav-number">3.</span> <span class="nav-text">关键字与保留字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E8%AF%86%E7%AC%A6"><span class="nav-number">4.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.</span> <span class="nav-text">运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%9A"><span class="nav-number">5.1.</span> <span class="nav-text">常见的运算符：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.1.1.</span> <span class="nav-text">算术运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.1.2.</span> <span class="nav-text">赋值运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.1.3.</span> <span class="nav-text">比较运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.1.4.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.1.5.</span> <span class="nav-text">位运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.1.6.</span> <span class="nav-text">三元运算符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">6.</span> <span class="nav-text">运算符的优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-number">7.</span> <span class="nav-text">程序的流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#if-else%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="nav-number">7.0.1.</span> <span class="nav-text">if-else结构：</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -329,7 +331,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-22 02:14:39" itemprop="dateModified" datetime="2021-03-22T02:14:39+08:00">2021-03-22</time>
+        <time title="修改时间：2021-03-22 03:27:10" itemprop="dateModified" datetime="2021-03-22T03:27:10+08:00">2021-03-22</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -574,6 +576,168 @@
 <td align="center">true</td>
 </tr>
 </tbody></table>
+<h4 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h4><p>&amp;：逻辑与</p>
+<p>&amp;&amp;：短路与</p>
+<p>|：逻辑或</p>
+<p>||：短路或</p>
+<p>!：逻辑非</p>
+<p>^：逻辑异或</p>
+<table>
+<thead>
+<tr>
+<th align="center">a</th>
+<th align="center">b</th>
+<th align="center">a&amp;b</th>
+<th align="center">a&amp;&amp;b</th>
+<th align="center">a|b</th>
+<th align="center">a||b</th>
+<th align="center">!a</th>
+<th align="center">a^b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">true</td>
+<td align="center">true</td>
+<td align="center"><strong>true</strong></td>
+<td align="center"><strong>true</strong></td>
+<td align="center"><strong>true</strong></td>
+<td align="center"><strong>true</strong></td>
+<td align="center"><strong>false</strong></td>
+<td align="center"><strong>false</strong></td>
+</tr>
+<tr>
+<td align="center">true</td>
+<td align="center">false</td>
+<td align="center"><strong>false</strong></td>
+<td align="center"><strong>false</strong></td>
+<td align="center"><strong>true</strong></td>
+<td align="center"><strong>true</strong></td>
+<td align="center"><strong>false</strong></td>
+<td align="center"><strong>true</strong></td>
+</tr>
+<tr>
+<td align="center">false</td>
+<td align="center">true</td>
+<td align="center"><strong>false</strong></td>
+<td align="center"><strong>false</strong></td>
+<td align="center"><strong>true</strong></td>
+<td align="center"><strong>true</strong></td>
+<td align="center"><strong>true</strong></td>
+<td align="center"><strong>true</strong></td>
+</tr>
+<tr>
+<td align="center">false</td>
+<td align="center">false</td>
+<td align="center"><strong>false</strong></td>
+<td align="center"><strong>false</strong></td>
+<td align="center"><strong>false</strong></td>
+<td align="center"><strong>false</strong></td>
+<td align="center"><strong>true</strong></td>
+<td align="center"><strong>false</strong></td>
+</tr>
+</tbody></table>
+<p><strong>区分&amp;和&amp;&amp;：</strong></p>
+<ol>
+<li><strong>相同点1：</strong>&amp; 与 &amp;&amp; d的运算结果相同</li>
+<li><strong>相同点2：</strong>当符号左边是true时，二者都会执行符号右边的运算</li>
+<li><strong>不同点：</strong>当符号左边是false时，&amp;继续执行符号右边的运算。&amp;&amp;不再执行符号右边的运算</li>
+</ol>
+<p><strong>区分 | 与 || ：</strong></p>
+<ol>
+<li><strong>相同点1：</strong>| 与 | | 的运算结果相同</li>
+<li><strong>相同点2：</strong>当符号左边是false时，二者都会执行符号右边的运算</li>
+<li><strong>不同点：</strong>当符号左边是true时，| 继续执行右边的运算，而 | | 不再执行符号右边的运算</li>
+</ol>
+<h4 id="位运算符"><a href="#位运算符" class="headerlink" title="位运算符"></a>位运算符</h4><table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">运算</th>
+<th align="center">示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&lt;&lt;</td>
+<td align="center">左移</td>
+<td align="center">3&lt;&lt;2=12 ——&gt;  3 * 2 * 2=12</td>
+</tr>
+<tr>
+<td align="center">&gt;&gt;</td>
+<td align="center">右移</td>
+<td align="center">3&gt;&gt;1=1 ——&gt; 3/2 =1</td>
+</tr>
+<tr>
+<td align="center">&gt;&gt;&gt;</td>
+<td align="center">无符号右移</td>
+<td align="center">3&gt;&gt;&gt;1=1——&gt; 3/2=1</td>
+</tr>
+<tr>
+<td align="center">&amp;</td>
+<td align="center">与运算</td>
+<td align="center">6 &amp; 3 = 2</td>
+</tr>
+<tr>
+<td align="center">|</td>
+<td align="center">或运算</td>
+<td align="center">6 | 3 = 7</td>
+</tr>
+<tr>
+<td align="center">^</td>
+<td align="center">异或运算</td>
+<td align="center">6 ^ 3 = 5</td>
+</tr>
+<tr>
+<td align="center">~</td>
+<td align="center">取反运算</td>
+<td align="center">~6 = -7</td>
+</tr>
+</tbody></table>
+<p>位运算符操作的都是整型的数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> &lt;&lt; : 在一定范围内，每向左移一位，就相当于*<span class="number">2</span></span><br><span class="line">	i&lt;&lt;<span class="number">3</span>; 结果为i乘以<span class="number">2</span>的<span class="number">3</span>次方</span><br><span class="line">	i&lt;&lt;<span class="number">9</span>; 结果为i乘以<span class="number">2</span>的<span class="number">9</span>次方</span><br><span class="line"><span class="number">2.</span> &gt;&gt; : 在一定范围内，每向右移一位，就相当于 /<span class="number">2</span></span><br><span class="line"></span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h4><ol>
+<li><p>格式：</p>
+<p>​    <strong>( 条件表达式 )? 表达式1：表达式2</strong></p>
+<p>​    条件表达式为<strong>true</strong>时，运算结果为<strong>表达式1</strong></p>
+<p>​    条件表达式为<strong>false</strong>时，运算结果为<strong>表达式2</strong></p>
+</li>
+<li><p>表达式1和表达式2为同种类型</p>
+</li>
+<li><p>三元运算符与 if - else 的联系与区别：</p>
+<ol>
+<li>三元运算符可简化 if - else语句</li>
+<li>三元运算符要求必须返回一个结果</li>
+<li>if 后的代码块可以有多个语句</li>
+</ol>
+</li>
+</ol>
+<h2 id="运算符的优先级"><a href="#运算符的优先级" class="headerlink" title="运算符的优先级"></a>运算符的优先级</h2><ol>
+<li>运算符有不同的优先级，所谓优先级就是表达式运算中的运算顺序</li>
+<li>只有单目运算符、三元运算符、赋值运算符是从左向右运算的</li>
+</ol>
+<h2 id="程序的流程控制"><a href="#程序的流程控制" class="headerlink" title="程序的流程控制"></a>程序的流程控制</h2><ol>
+<li><p>流程控制语句是用来控制程序中各语句执行顺序的语句，可以把语句组合成能完成一定功能的小逻辑模块</p>
+</li>
+<li><p>其流程控制方式采用结构化程设计中规定的三种基本流程结构，即：</p>
+<ol>
+<li><p>顺序结构</p>
+<p>程序从上到下逐行的执行，中间没有任何判断和跳转</p>
+</li>
+<li><p>分支结构</p>
+<p>根据条件，选择性的执行某段代码</p>
+<p>有 if - else 和 switch-case两种分支语句 </p>
+</li>
+<li><p>循环结构</p>
+<p>根据循环条件，重复性的执行某段代码</p>
+<p>有while、do-while、for 三种循环语局</p>
+<p>注: JDK1.5提供了foreach循环，方便的遍历集合、数组元素</p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="if-else结构："><a href="#if-else结构：" class="headerlink" title="if-else结构："></a>if-else结构：</h4><p><img src="https://raw.githubusercontent.com/0riginal-sin/image.github.io/main/if%E5%88%A4%E6%96%AD.jpg"></p>
 
     </div>
 
