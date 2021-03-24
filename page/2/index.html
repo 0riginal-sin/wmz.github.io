@@ -291,7 +291,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E4%BA%8C)-SpringMVC%20%E7%9A%84%E5%85%A5%E9%97%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E4%B8%83)-SpringMVC%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/tx36039.gif">
@@ -304,7 +304,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E4%BA%8C)-SpringMVC%20%E7%9A%84%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">SpringMVC入门</a>
+          <a href="/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E4%B8%83)-SpringMVC%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">SpringMVC异常处理</a>
         </h2>
 
         <div class="post-meta-container">
@@ -316,7 +316,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-03-20 01:23:04 / 修改时间：02:46:51" itemprop="dateCreated datePublished" datetime="2021-03-20T01:23:04+08:00">2021-03-20</time>
+      <time title="创建时间：2021-03-20 01:23:04 / 修改时间：02:38:50" itemprop="dateCreated datePublished" datetime="2021-03-20T01:23:04+08:00">2021-03-20</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -338,93 +338,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>[TOC]</p>
-<h3 id="1-SpringMVC-的入门案例"><a href="#1-SpringMVC-的入门案例" class="headerlink" title="1.SpringMVC 的入门案例"></a>1.SpringMVC 的入门案例</h3><h4 id="1-1-创建一个maven工程并导入依赖"><a href="#1-1-创建一个maven工程并导入依赖" class="headerlink" title="1.1.创建一个maven工程并导入依赖"></a>1.1.创建一个maven工程并导入依赖</h4><ul>
-<li><p>maven项目pom配置:</p>
+          <p>我们知道，系统中异常包括：编译时异常和运行时异常RuntimeException，前者通过捕获异常从而获取异常信息，后者主要通过规范代码开发、测试通过手段减少运行时异常的发生。在开发中，不管是dao层、service层还是controller层，都有可能抛出异常，在springmvc中，能将所有类型的异常处理从各处理过程解耦出来，既保证了相关处理过程的功能较单一，也实现了异常信息的统一处理和维护。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E4%BA%8C)-SpringMVC%20%E7%9A%84%E5%85%A5%E9%97%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E5%85%AB)-SpringMVC%20%E4%B8%AD%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx36039.gif">
-      <meta itemprop="name" content="original-sin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="original-sin">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E5%85%AB)-SpringMVC%20%E4%B8%AD%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8/" class="post-title-link" itemprop="url">SpringMVC拦截器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-03-20 01:23:04 / 修改时间：02:45:23" itemprop="dateCreated datePublished" datetime="2021-03-20T01:23:04+08:00">2021-03-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="1-拦截器的作用"><a href="#1-拦截器的作用" class="headerlink" title="1.拦截器的作用"></a>1.拦截器的作用</h3><p>Spring MVC 的处理器拦截器类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。用户可以自己定义一些拦截器来实现特定的功能。谈到拦截器，还要向大家提一个词——拦截器链（Interceptor Chain）。拦截器链就是将拦截器按一定的顺序联结成一条链。在访问被拦截的方法或字段时，拦截器链中的拦截器就会按其之前定义的顺序被调用。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E5%85%AB)-SpringMVC%20%E4%B8%AD%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8/#more" rel="contents">
+              <a class="btn" href="/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E4%B8%83)-SpringMVC%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -506,6 +423,87 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E4%BA%94)-SpringMVC%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E5%92%8C%E7%BB%93%E6%9E%9C%E8%A7%86%E5%9B%BE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E5%85%AB)-SpringMVC%20%E4%B8%AD%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx36039.gif">
+      <meta itemprop="name" content="original-sin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="original-sin">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E5%85%AB)-SpringMVC%20%E4%B8%AD%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8/" class="post-title-link" itemprop="url">SpringMVC拦截器</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-20 01:23:04 / 修改时间：02:45:23" itemprop="dateCreated datePublished" datetime="2021-03-20T01:23:04+08:00">2021-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/java/" itemprop="url" rel="index"><span itemprop="name">java</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1-拦截器的作用"><a href="#1-拦截器的作用" class="headerlink" title="1.拦截器的作用"></a>1.拦截器的作用</h3><p>Spring MVC 的处理器拦截器类似于 Servlet 开发中的过滤器 Filter，用于对处理器进行预处理和后处理。用户可以自己定义一些拦截器来实现特定的功能。谈到拦截器，还要向大家提一个词——拦截器链（Interceptor Chain）。拦截器链就是将拦截器按一定的顺序联结成一条链。在访问被拦截的方法或字段时，拦截器链中的拦截器就会按其之前定义的顺序被调用。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/20/SpringMVC%E4%B8%93%E9%A2%98(%E5%85%AB)-SpringMVC%20%E4%B8%AD%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -862,87 +860,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/VUE%E6%A1%86%E6%9E%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx36039.gif">
-      <meta itemprop="name" content="original-sin">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="original-sin">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/20/VUE%E6%A1%86%E6%9E%B6/" class="post-title-link" itemprop="url">VUE框架</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2021-03-20 01:23:04 / 修改时间：15:10:58" itemprop="dateCreated datePublished" datetime="2021-03-20T01:23:04+08:00">2021-03-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="VUE框架"><a href="#VUE框架" class="headerlink" title="VUE框架"></a>VUE框架</h2><p><strong>vue</strong> ：是一套用于构建用户界面的渐进式框架，发布于2014年2月。与其他大型框架不同的是，vue被设计为可以自底向上逐层应用的。vue的核心库只关注视图层，不仅易于上手，还便于与第三方库（如：vue-router，vue-resource，vuex）或既有项目整合。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/20/VUE%E6%A1%86%E6%9E%B6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/Spring%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -997,6 +914,87 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/03/20/Spring%E6%A6%82%E8%BF%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/VUE%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx36039.gif">
+      <meta itemprop="name" content="original-sin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="original-sin">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/20/VUE%E6%A1%86%E6%9E%B6/" class="post-title-link" itemprop="url">VUE框架</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-20 01:23:04 / 修改时间：15:10:58" itemprop="dateCreated datePublished" datetime="2021-03-20T01:23:04+08:00">2021-03-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="VUE框架"><a href="#VUE框架" class="headerlink" title="VUE框架"></a>VUE框架</h2><p><strong>vue</strong> ：是一套用于构建用户界面的渐进式框架，发布于2014年2月。与其他大型框架不同的是，vue被设计为可以自底向上逐层应用的。vue的核心库只关注视图层，不仅易于上手，还便于与第三方库（如：vue-router，vue-resource，vuex）或既有项目整合。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/20/VUE%E6%A1%86%E6%9E%B6/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
