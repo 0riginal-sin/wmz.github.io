@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="微信小程序标签及属性:view标签：块级标签    属性 类型 默认值 必填 说明    hover-class String none 否 指定按下去的样式类，当hover-class&#x3D;”none”时，没有点击效果   hover-stop-propagation boolean false 否 指定是否阻止本节点的祖先节点出现点击状态（阻止冒泡）   hover-start-time numb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序">
+<meta property="og:url" content="http://example.com/2021/04/01/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/index.html">
+<meta property="og:site_name" content="original-sin">
+<meta property="og:description" content="微信小程序标签及属性:view标签：块级标签    属性 类型 默认值 必填 说明    hover-class String none 否 指定按下去的样式类，当hover-class&#x3D;”none”时，没有点击效果   hover-stop-propagation boolean false 否 指定是否阻止本节点的祖先节点出现点击状态（阻止冒泡）   hover-start-time numb">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-01T12:15:43.000Z">
+<meta property="article:modified_time" content="2021-04-02T05:08:31.450Z">
+<meta property="article:author" content="original-sin">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/04/01/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>微信小程序 | original-sin</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">original-sin</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">There is no beginning no end no exception</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">30</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">微信小程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E7%AD%BE%E5%8F%8A%E5%B1%9E%E6%80%A7"><span class="nav-number">1.1.</span> <span class="nav-text">标签及属性:</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="original-sin"
+      src="/images/tx36039.gif">
+  <p class="site-author-name" itemprop="name">original-sin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/0riginal-sin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;0riginal-sin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:w16676666067@163.com" title="E-Mail → mailto:w16676666067@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/" title="Weibo → https:&#x2F;&#x2F;weibo.com" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/" title="Google → https:&#x2F;&#x2F;plus.google.com" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/" title="Twitter → https:&#x2F;&#x2F;twitter.com" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/" title="YouTube → https:&#x2F;&#x2F;youtube.com" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/" title="Instagram → https:&#x2F;&#x2F;instagram.com" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="skype:?call|chat" title="Skype → skype:?call|chat" rel="noopener" target="_blank"><i class="fab fa-skype fa-fw"></i>Skype</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://bnmqaz.cn/" title="https:&#x2F;&#x2F;bnmqaz.cn" rel="noopener" target="_blank">友链</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/01/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx36039.gif">
+      <meta itemprop="name" content="original-sin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="original-sin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          微信小程序
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-04-01 20:15:43" itemprop="dateCreated datePublished" datetime="2021-04-01T20:15:43+08:00">2021-04-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-02 13:08:31" itemprop="dateModified" datetime="2021-04-02T13:08:31+08:00">2021-04-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" itemprop="url" rel="index"><span itemprop="name">微信小程序</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h2><h3 id="标签及属性"><a href="#标签及属性" class="headerlink" title="标签及属性:"></a>标签及属性:</h3><p><strong>view标签：</strong>块级标签</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">类型</th>
+<th align="center">默认值</th>
+<th align="center">必填</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">hover-class</td>
+<td align="center">String</td>
+<td align="center">none</td>
+<td align="center">否</td>
+<td align="center">指定按下去的样式类，当hover-class=”none”时，没有点击效果</td>
+</tr>
+<tr>
+<td align="center">hover-stop-propagation</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">指定是否阻止本节点的祖先节点出现点击状态（阻止冒泡）</td>
+</tr>
+<tr>
+<td align="center">hover-start-time</td>
+<td align="center">number</td>
+<td align="center">50</td>
+<td align="center">否</td>
+<td align="center">按住后多久出现点击态，单位毫秒</td>
+</tr>
+<tr>
+<td align="center">hover-stay-time</td>
+<td align="center">number</td>
+<td align="center">400</td>
+<td align="center">否</td>
+<td align="center">手指松开后点击态保留时间，单位毫秒</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<p><strong>text标签：</strong>文本标签</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">类型</th>
+<th align="center">默认值</th>
+<th align="center">必填</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">selectable</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">文本是否可选</td>
+</tr>
+<tr>
+<td align="center"><strong>space</strong></td>
+<td align="center">string</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">显示连续空格</td>
+</tr>
+<tr>
+<td align="center">decode</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">是否解码</td>
+</tr>
+</tbody></table>
+<p><strong>space</strong>属性的合法值：</p>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ensp</td>
+<td align="center">中文字符空格一半大小</td>
+</tr>
+<tr>
+<td align="center">emsp</td>
+<td align="center">中文字符空格大小</td>
+</tr>
+<tr>
+<td align="center">nbsp</td>
+<td align="center">根据字体设置的空格大小</td>
+</tr>
+</tbody></table>
+<p><strong>image标签：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">类型</th>
+<th align="center">默认值</th>
+<th align="center">必填</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">src</td>
+<td align="center">string</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">图片资源地址</td>
+</tr>
+<tr>
+<td align="center">mode</td>
+<td align="center">string</td>
+<td align="center">scaleToFill</td>
+<td align="center">否</td>
+<td align="center">图片裁剪，缩放的模式</td>
+</tr>
+<tr>
+<td align="center">webp</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">默认不解析webp格式只支持网诺资源</td>
+</tr>
+<tr>
+<td align="center">lazy-load</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">图片懒加载，在即将进入一定范围（上下三屏）时才开始加载</td>
+</tr>
+<tr>
+<td align="center">show-menu-by-longpress</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">开启长按图片显示识别小程序码菜单</td>
+</tr>
+<tr>
+<td align="center">binderror</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">当错误发生时触发，event.detail={errMsg}</td>
+</tr>
+<tr>
+<td align="center">bindload</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">当图片载入完毕时触发，event.detail = {height, width}</td>
+</tr>
+</tbody></table>
+<p>mode的合法值：</p>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">scaleToFill</td>
+<td align="center">缩放模式，不保持纵横比缩放图片，使图片的宽高完全拉伸至填满 image 元素</td>
+</tr>
+<tr>
+<td align="center">aspectFit</td>
+<td align="center">缩放模式，保持纵横比缩放图片，使图片的长边能完全显示出来。也就是说，可以完整地将图片显示出来。</td>
+</tr>
+<tr>
+<td align="center">aspectFill</td>
+<td align="center">缩放模式，保持纵横比缩放图片，只保证图片的短边能完全显示出来。也就是说，图片通常只在水平或垂直方向是完整的，另一个方向将会发生截取。</td>
+</tr>
+<tr>
+<td align="center">widthFix</td>
+<td align="center">缩放模式，宽度不变，高度自动变化，保持原图宽高比不变</td>
+</tr>
+<tr>
+<td align="center">heightFix</td>
+<td align="center">缩放模式，高度不变，宽度自动变化，保持原图宽高比不变</td>
+</tr>
+<tr>
+<td align="center">top</td>
+<td align="center">裁剪模式，不缩放图片，只显示图片的顶部区域</td>
+</tr>
+<tr>
+<td align="center">bottom</td>
+<td align="center">裁剪模式，不缩放图片，只显示图片的底部区域</td>
+</tr>
+<tr>
+<td align="center">center</td>
+<td align="center">裁剪模式，不缩放图片，只显示图片的中间区域</td>
+</tr>
+<tr>
+<td align="center">left</td>
+<td align="center">裁剪模式，不缩放图片，只显示图片的左边区域</td>
+</tr>
+<tr>
+<td align="center">right</td>
+<td align="center">裁剪模式，不缩放图片，只显示图片的右边区域</td>
+</tr>
+<tr>
+<td align="center">top left</td>
+<td align="center">裁剪模式，不缩放图片，只显示图片的左上边区域</td>
+</tr>
+<tr>
+<td align="center">top right</td>
+<td align="center">裁剪模式，不缩放图片，只显示图片的右上边区域</td>
+</tr>
+<tr>
+<td align="center">bottom left</td>
+<td align="center">裁剪模式，不缩放图片，只显示图片的左下边区域</td>
+</tr>
+<tr>
+<td align="center">bottom right</td>
+<td align="center">裁剪模式，不缩放图片，只显示图片的右下边区域</td>
+</tr>
+</tbody></table>
+<p><strong>navigator（块元素）：</strong>页面链接</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">类型</th>
+<th align="center">默认值</th>
+<th align="center">必填</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">target</td>
+<td align="center">string</td>
+<td align="center">self</td>
+<td align="center">否</td>
+<td align="center">在哪个目标上发生跳转，默认当前小程序</td>
+</tr>
+<tr>
+<td align="center">url</td>
+<td align="center">string</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">当前小程序内的跳转链接</td>
+</tr>
+<tr>
+<td align="center">open-type</td>
+<td align="center">spring</td>
+<td align="center">navigate</td>
+<td align="center">否</td>
+<td align="center">跳转方式</td>
+</tr>
+<tr>
+<td align="center">delta</td>
+<td align="center">number</td>
+<td align="center">1</td>
+<td align="center">否</td>
+<td align="center">当 open-type 为 ‘navigateBack’ 时有效，表示回退的层数</td>
+</tr>
+<tr>
+<td align="center">app-id</td>
+<td align="center">string</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">当<code>target=&quot;miniProgram&quot;</code>时有效，要打开的小程序 appId</td>
+</tr>
+<tr>
+<td align="center">path</td>
+<td align="center">string</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">当<code>target=&quot;miniProgram&quot;</code>时有效，打开的页面路径，如果为空则打开首页</td>
+</tr>
+<tr>
+<td align="center">extra-data</td>
+<td align="center">object</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">当<code>target=&quot;miniProgram&quot;</code>时有效，需要传递给目标小程序的数据，目标小程序可在 <code>App.onLaunch()</code>，<code>App.onShow()</code> 中获取到这份数据</td>
+</tr>
+<tr>
+<td align="center">version</td>
+<td align="center">string</td>
+<td align="center">release</td>
+<td align="center">否</td>
+<td align="center">当<code>target=&quot;miniProgram&quot;</code>时有效，要打开的小程序版本</td>
+</tr>
+<tr>
+<td align="center">hover-class</td>
+<td align="center">string</td>
+<td align="center">navigator-hover</td>
+<td align="center">否</td>
+<td align="center">指定点击时的样式类，当<code>hover-class=&quot;none&quot;</code>时，没有点击态效果</td>
+</tr>
+<tr>
+<td align="center">hover-stop-propagation</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">指定是否阻止本节点的祖先节点出现点击态</td>
+</tr>
+<tr>
+<td align="center">hover-start-time</td>
+<td align="center">number</td>
+<td align="center">50</td>
+<td align="center">否</td>
+<td align="center">按住后多久出现点击态，单位毫秒</td>
+</tr>
+<tr>
+<td align="center">hover-stay-time</td>
+<td align="center">number</td>
+<td align="center">600</td>
+<td align="center">否</td>
+<td align="center">手指松开后点击态保留时间，单位毫秒</td>
+</tr>
+<tr>
+<td align="center">bindsuccess</td>
+<td align="center">string</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">当<code>target=&quot;miniProgram&quot;</code>时有效，跳转小程序成功</td>
+</tr>
+<tr>
+<td align="center">bindfail</td>
+<td align="center">string</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">当<code>target=&quot;miniProgram&quot;</code>时有效，跳转小程序失败</td>
+</tr>
+<tr>
+<td align="center">bindcomplete</td>
+<td align="center">string</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">当<code>target=&quot;miniProgram&quot;</code>时有效，跳转小程序完成</td>
+</tr>
+</tbody></table>
+<p>target的合法值：</p>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">self</td>
+<td align="center">当前小程序</td>
+</tr>
+<tr>
+<td align="center">miniProgram</td>
+<td align="center">其他小程序</td>
+</tr>
+</tbody></table>
+<p>open-type的合法值:</p>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">navigate</td>
+<td align="center">对应 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.navigateTo.html">wx.navigateTo</a> 或 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/open-api/miniprogram-navigate/wx.navigateToMiniProgram.html">wx.navigateToMiniProgram</a> 的功能</td>
+</tr>
+<tr>
+<td align="center">redirect</td>
+<td align="center">对应 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.redirectTo.html">wx.redirectTo</a> 的功能</td>
+</tr>
+<tr>
+<td align="center">switchTab</td>
+<td align="center">对应 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.switchTab.html">wx.switchTab</a> 的功能</td>
+</tr>
+<tr>
+<td align="center">reLaunch</td>
+<td align="center">对应 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.reLaunch.html">wx.reLaunch</a> 的功能</td>
+</tr>
+<tr>
+<td align="center">navigateBack</td>
+<td align="center">对应 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.navigateBack.html">wx.navigateBack</a> 的功能</td>
+</tr>
+<tr>
+<td align="center">exit</td>
+<td align="center">退出小程序，<code>target=&quot;miniProgram&quot;</code>时生效</td>
+</tr>
+</tbody></table>
+<p>version的合法值：</p>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">develop</td>
+<td align="center">开发版</td>
+</tr>
+<tr>
+<td align="center">trial</td>
+<td align="center">体验版</td>
+</tr>
+<tr>
+<td align="center">release</td>
+<td align="center">正式版，仅在当前小程序为开发版或体验版时此参数有效；如果当前小程序是正式版，则打开的小程序必定是正式版</td>
+</tr>
+</tbody></table>
+<p><strong>scroll-view标签：</strong>可滚动视图区域。使用竖向滚动时，需要给<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/scroll-view.html">scroll-view</a>一个固定高度，通过 WXSS 设置 height，组件属性的长度单位默认为px</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">类型</th>
+<th align="center">默认值</th>
+<th align="center">必填</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">scroll-x</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">允许横向滚动</td>
+</tr>
+<tr>
+<td align="center">scroll-y</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">允许纵向滚动</td>
+</tr>
+<tr>
+<td align="center">upper-threshold</td>
+<td align="center">number/string</td>
+<td align="center">50</td>
+<td align="center">否</td>
+<td align="center">距顶部/左边多远时，触发 scrolltoupper 事件</td>
+</tr>
+<tr>
+<td align="center">lower-threshold</td>
+<td align="center">number/string</td>
+<td align="center">50</td>
+<td align="center">否</td>
+<td align="center">距底部/右边多远时，触发 scrolltolower 事件</td>
+</tr>
+<tr>
+<td align="center">scroll-top</td>
+<td align="center">number/string</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">设置竖向滚动条位置</td>
+</tr>
+<tr>
+<td align="center">scroll-left</td>
+<td align="center">number/string</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">设置横向滚动条位置</td>
+</tr>
+<tr>
+<td align="center">scroll-into-view</td>
+<td align="center">string</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">值应为某子元素id（id不能以数字开头）。设置哪个方向可滚动，则在哪个方向滚动到该元素</td>
+</tr>
+<tr>
+<td align="center">scroll-with-animation</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">在设置滚动条位置时使用动画过渡</td>
+</tr>
+<tr>
+<td align="center">enable-back-to-top</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">iOS点击顶部状态栏、安卓双击标题栏时，滚动条返回顶部，只支持竖向</td>
+</tr>
+<tr>
+<td align="center">enable-flex</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">启用 flexbox 布局。开启后，当前节点声明了 <code>display: flex</code> 就会成为 flex container，并作用于其孩子节点。</td>
+</tr>
+<tr>
+<td align="center">scroll-anchoring</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">开启 scroll anchoring 特性，即控制滚动位置不随内容变化而抖动，仅在 iOS 下生效，安卓下可参考 CSS <code>overflow-anchor</code> 属性。</td>
+</tr>
+<tr>
+<td align="center">refresher-enabled</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">开启自定义下拉刷新</td>
+</tr>
+<tr>
+<td align="center">refresher-threshold</td>
+<td align="center">number</td>
+<td align="center">45</td>
+<td align="center">否</td>
+<td align="center">设置自定义下拉刷新阈值</td>
+</tr>
+<tr>
+<td align="center">refresher-default-style</td>
+<td align="center">string</td>
+<td align="center">“black”</td>
+<td align="center">否</td>
+<td align="center">设置自定义下拉刷新默认样式，支持设置 `black | white | none， none 表示不使用默认样式</td>
+</tr>
+<tr>
+<td align="center">refresher-background</td>
+<td align="center">string</td>
+<td align="center">“#FFF”</td>
+<td align="center">否</td>
+<td align="center">设置自定义下拉刷新区域背景颜色</td>
+</tr>
+<tr>
+<td align="center">refresher-triggered</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">设置当前下拉刷新状态，true 表示下拉刷新已经被触发，false 表示下拉刷新未被触发</td>
+</tr>
+<tr>
+<td align="center">enhanced</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">启用 scroll-view 增强特性</td>
+</tr>
+<tr>
+<td align="center">bounces</td>
+<td align="center">boolean</td>
+<td align="center">true</td>
+<td align="center">否</td>
+<td align="center">iOS 下 scroll-view 边界弹性控制 (同时开启 enhanced 属性后生效)</td>
+</tr>
+<tr>
+<td align="center">show-scrollbar</td>
+<td align="center">boolean</td>
+<td align="center">true</td>
+<td align="center">否</td>
+<td align="center">滚动条显隐控制 (同时开启 enhanced 属性后生效)</td>
+</tr>
+<tr>
+<td align="center">paging-enabled</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">分页滑动效果 (同时开启 enhanced 属性后生效)</td>
+</tr>
+<tr>
+<td align="center">fast-deceleration</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">滑动减速速率控制 (同时开启 enhanced 属性后生效)</td>
+</tr>
+<tr>
+<td align="center">binddragstart</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">滑动开始事件 (同时开启 enhanced 属性后生效) detail { scrollTop, scrollLeft }</td>
+</tr>
+<tr>
+<td align="center">binddragend</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">滑动结束事件 (同时开启 enhanced 属性后生效) detail { scrollTop, scrollLeft, velocity }</td>
+</tr>
+<tr>
+<td align="center">bindscrolltoupper</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">滚动到顶部/左边时触发</td>
+</tr>
+<tr>
+<td align="center">bindscrolltolower</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">滚动到底部/右边时触发</td>
+</tr>
+<tr>
+<td align="center">bindscroll</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">滚动时触发，event.detail = {scrollLeft, scrollTop, scrollHeight, scrollWidth, deltaX, deltaY}</td>
+</tr>
+<tr>
+<td align="center">bindrefresherpulling</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">自定义下拉刷新控件被下拉</td>
+</tr>
+<tr>
+<td align="center">bindrefresherrefresh</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">自定义下拉刷新被触发</td>
+</tr>
+<tr>
+<td align="center">bindrefresherrestore</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">自定义下拉刷新被复位</td>
+</tr>
+<tr>
+<td align="center">bindrefresherabort</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">自定义下拉刷新被中止</td>
+</tr>
+<tr>
+<td align="center">binddragging</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">滑动事件 (同时开启 enhanced 属性后生效) detail { scrollTop, scrollLeft }</td>
+</tr>
+</tbody></table>
+<p><strong>swiper标签：</strong>滑块视图容器。其中只可放置<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/swiper-item.html">swiper-item</a>组件，否则会导致未定义的行为</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">类型</th>
+<th align="center">默认值</th>
+<th align="center">必填</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">indicator-dots</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">是否显示面板指示点</td>
+</tr>
+<tr>
+<td align="center">indicator-color</td>
+<td align="center">color</td>
+<td align="center">rgba(0, 0, 0, .3)</td>
+<td align="center">否</td>
+<td align="center">指示点颜色</td>
+</tr>
+<tr>
+<td align="center">indicator-active-color</td>
+<td align="center">color</td>
+<td align="center">#000000</td>
+<td align="center">否</td>
+<td align="center">当前选中的指示点颜色</td>
+</tr>
+<tr>
+<td align="center">autoplay</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">是否自动切换</td>
+</tr>
+<tr>
+<td align="center">current</td>
+<td align="center">number</td>
+<td align="center">0</td>
+<td align="center">否</td>
+<td align="center">当前所在滑块的 index</td>
+</tr>
+<tr>
+<td align="center">interval</td>
+<td align="center">number</td>
+<td align="center">5000</td>
+<td align="center">否</td>
+<td align="center">自动切换时间间隔</td>
+</tr>
+<tr>
+<td align="center">duration</td>
+<td align="center">number</td>
+<td align="center">500</td>
+<td align="center">否</td>
+<td align="center">滑动动画时长</td>
+</tr>
+<tr>
+<td align="center">circular</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">是否采用衔接滑动</td>
+</tr>
+<tr>
+<td align="center">vertical</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">滑动方向是否为纵向</td>
+</tr>
+<tr>
+<td align="center">previous-margin</td>
+<td align="center">string</td>
+<td align="center">“0px”</td>
+<td align="center">否</td>
+<td align="center">前边距，可用于露出前一项的一小部分，接受 px 和 rpx 值</td>
+</tr>
+<tr>
+<td align="center">next-margin</td>
+<td align="center">string</td>
+<td align="center">“0px”</td>
+<td align="center">否</td>
+<td align="center">后边距，可用于露出后一项的一小部分，接受 px 和 rpx 值</td>
+</tr>
+<tr>
+<td align="center">snap-to-edge</td>
+<td align="center">boolean</td>
+<td align="center">“false”</td>
+<td align="center">否</td>
+<td align="center">当 swiper-item 的个数大于等于 2，关闭 circular 并且开启 previous-margin 或 next-margin 的时候，可以指定这个边距是否应用到第一个、最后一个元素</td>
+</tr>
+<tr>
+<td align="center">display-multiple-items</td>
+<td align="center">number</td>
+<td align="center">1</td>
+<td align="center">否</td>
+<td align="center">同时显示的滑块数量</td>
+</tr>
+<tr>
+<td align="center">easing-function</td>
+<td align="center">string</td>
+<td align="center">“default”</td>
+<td align="center">否</td>
+<td align="center">指定 swiper 切换缓动动画类型</td>
+</tr>
+<tr>
+<td align="center">bindchange</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">current 改变时会触发 change 事件，event.detail = {current, source}</td>
+</tr>
+<tr>
+<td align="center">bindtransition</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">swiper-item 的位置发生改变时会触发 transition 事件，event.detail = {dx: dx, dy: dy}</td>
+</tr>
+<tr>
+<td align="center">bindanimationfinish</td>
+<td align="center">eventhandle</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">动画结束时会触发 animationfinish 事件，event.detail 同上</td>
+</tr>
+</tbody></table>
+<p><strong>easing-function 的合法值</strong>：</p>
+<table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">default</td>
+<td align="center">默认缓动函数</td>
+</tr>
+<tr>
+<td align="center">linear</td>
+<td align="center">线性动画</td>
+</tr>
+<tr>
+<td align="center">easeInCubic</td>
+<td align="center">缓入动画</td>
+</tr>
+<tr>
+<td align="center">easeOutCubic</td>
+<td align="center">缓出动画</td>
+</tr>
+<tr>
+<td align="center">easeInOutCubic</td>
+<td align="center">缓入缓出动画</td>
+</tr>
+</tbody></table>
+<p><strong>swiper-item标签：</strong>仅可放置在<strong>swiper</strong>组件中，宽高自动设置为100%。</p>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">类型</th>
+<th align="center">默认值</th>
+<th align="center">必填</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">item-id</td>
+<td align="center">string</td>
+<td align="center"></td>
+<td align="center">否</td>
+<td align="center">该 swiper-item 的标识符</td>
+</tr>
+<tr>
+<td align="center">skip-hidden-item-layout</td>
+<td align="center">boolean</td>
+<td align="center">false</td>
+<td align="center">否</td>
+<td align="center">是否跳过未显示的滑块布局，设为 true 可优化复杂情况下的滑动性能，但会丢失隐藏状态滑块的布局信息</td>
+</tr>
+</tbody></table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="original-sin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="original-sin 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/31/%E7%A6%81%E6%AD%A2C%E7%9B%98%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/" rel="prev" title="禁止C盘安装软件">
+                  <i class="fa fa-chevron-left"></i> 禁止C盘安装软件
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">original-sin</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>  -->
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":210,"height":500,"hOffset":0,"vOffset":-70},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script type="text/javascript" src="/js/love.js"></script>
+</html>

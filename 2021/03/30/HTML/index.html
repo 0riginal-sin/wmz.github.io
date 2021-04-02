@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}};
+  </script>
+<meta name="description" content="HTML能够写出基本的html页面（里面包含图片，链接，文字等网页元素标签）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML">
+<meta property="og:url" content="http://example.com/2021/03/30/HTML/index.html">
+<meta property="og:site_name" content="original-sin">
+<meta property="og:description" content="HTML能够写出基本的html页面（里面包含图片，链接，文字等网页元素标签）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2021/03/30/fZ2qjROEiCgILoD.png">
+<meta property="og:image" content="https://i.loli.net/2021/03/30/k3DnM8APh4xO9yg.png">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/liulan.jpg">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/count.png">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/bz.png">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/gx.png">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/hb1.png">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/htmll.jpg">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/hb2.png">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/css.jpg">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/hb3.jpg">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/mess.png">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/01html%25E9%25AA%25A8%25E6%259E%25B6.jpg">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/pig.png">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/father.jpg">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/xiong.jpg">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/node.png">
+<meta property="og:image" content="e:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/dog.jpg">
+<meta property="article:published_time" content="2021-03-30T08:16:56.000Z">
+<meta property="article:modified_time" content="2021-03-30T08:55:03.454Z">
+<meta property="article:author" content="original-sin">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/03/30/fZ2qjROEiCgILoD.png">
+
+
+<link rel="canonical" href="http://example.com/2021/03/30/HTML/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>HTML | original-sin</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">original-sin</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">There is no beginning no end no exception</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">30</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML"><span class="nav-number">1.</span> <span class="nav-text">HTML</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A4%E8%AF%86web"><span class="nav-number">2.</span> <span class="nav-text">认识web</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E8%AE%A4%E8%AF%86%E7%BD%91%E9%A1%B5"><span class="nav-number">2.1.</span> <span class="nav-text">1.认识网页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%88%E6%98%BE%E7%A4%BA%E4%BB%A3%E7%A0%81%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">2.浏览器（显示代码）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%9F%A5%E7%9C%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8D%A0%E6%9C%89%E7%9A%84%E5%B8%82%E5%9C%BA%E4%BB%BD%E9%A2%9D"><span class="nav-number">2.3.</span> <span class="nav-text">2.1 查看浏览器占有的市场份额</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E5%B8%B8%E8%A7%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%86%85%E6%A0%B8%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">2.2 常见浏览器内核（了解）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Web%E6%A0%87%E5%87%86%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">3. Web标准（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%81%B5%E5%BE%AAWEB%E6%A0%87%E5%87%86%E5%91%A2%EF%BC%9F"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 为什么要遵循WEB标准呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Web-%E6%A0%87%E5%87%86%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 Web 标准的好处</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Web-%E6%A0%87%E5%87%86%E6%9E%84%E6%88%90"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Web 标准构成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">3.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%8B%93%E5%B1%95"><span class="nav-number">4.</span> <span class="nav-text">4. 拓展@</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-HTML-%E5%88%9D%E8%AF%86"><span class="nav-number"></span> <span class="nav-text">1. HTML 初识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-HTML%E9%AA%A8%E6%9E%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">1.1 HTML骨架格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#html%E9%AA%A8%E6%9E%B6%E6%A0%87%E7%AD%BE%E6%80%BB%E7%BB%93"><span class="nav-number">1.0.1.</span> <span class="nav-text">html骨架标签总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%A2%E9%98%9F%E7%BA%A6%E5%AE%9A%E5%A4%A7%E5%B0%8F%E5%86%99"><span class="nav-number">1.0.2.</span> <span class="nav-text">团队约定大小写</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-HTML%E5%85%83%E7%B4%A0%E6%A0%87%E7%AD%BE%E5%88%86%E7%B1%BB"><span class="nav-number">2.</span> <span class="nav-text">1.2 HTML元素标签分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-HTML%E6%A0%87%E7%AD%BE%E5%85%B3%E7%B3%BB"><span class="nav-number">3.</span> <span class="nav-text">1.3 HTML标签关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E4%BB%A3%E7%A0%81%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7%EF%BC%88%E4%B9%A6%E5%86%99%E4%BB%A3%E7%A0%81%EF%BC%89"><span class="nav-number"></span> <span class="nav-text">2. 代码开发工具（书写代码）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%96%87%E6%A1%A3%E7%B1%BB%E5%9E%8B-lt-DOCTYPE-gt"><span class="nav-number"></span> <span class="nav-text">3. 文档类型&lt;!DOCTYPE&gt;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E9%A1%B5%E9%9D%A2%E8%AF%AD%E8%A8%80lang"><span class="nav-number"></span> <span class="nav-text">4. 页面语言lang</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="nav-number"></span> <span class="nav-text">5. 字符集</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-HTML%E6%A0%87%E7%AD%BE%E7%9A%84%E8%AF%AD%E4%B9%89%E5%8C%96"><span class="nav-number"></span> <span class="nav-text">6. HTML标签的语义化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E6%8B%93%E5%B1%95%E9%98%85%E8%AF%BB"><span class="nav-number"></span> <span class="nav-text">7. 拓展阅读@</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E8%BA%AB%E7%8B%97%E7%9A%84%E7%94%B1%E6%9D%A5"><span class="nav-number">1.</span> <span class="nav-text">单身狗的由来</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="original-sin"
+      src="/images/tx36039.gif">
+  <p class="site-author-name" itemprop="name">original-sin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/0riginal-sin" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;0riginal-sin" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:w16676666067@163.com" title="E-Mail → mailto:w16676666067@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/" title="Weibo → https:&#x2F;&#x2F;weibo.com" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/" title="Google → https:&#x2F;&#x2F;plus.google.com" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/" title="Twitter → https:&#x2F;&#x2F;twitter.com" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.facebook.com/" title="FB Page → https:&#x2F;&#x2F;www.facebook.com" rel="noopener" target="_blank"><i class="fab fa-facebook fa-fw"></i>FB Page</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/" title="StackOverflow → https:&#x2F;&#x2F;stackoverflow.com" rel="noopener" target="_blank"><i class="fab fa-stack-overflow fa-fw"></i>StackOverflow</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://youtube.com/" title="YouTube → https:&#x2F;&#x2F;youtube.com" rel="noopener" target="_blank"><i class="fab fa-youtube fa-fw"></i>YouTube</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/" title="Instagram → https:&#x2F;&#x2F;instagram.com" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="skype:?call|chat" title="Skype → skype:?call|chat" rel="noopener" target="_blank"><i class="fab fa-skype fa-fw"></i>Skype</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://bnmqaz.cn/" title="https:&#x2F;&#x2F;bnmqaz.cn" rel="noopener" target="_blank">友链</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/30/HTML/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx36039.gif">
+      <meta itemprop="name" content="original-sin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="original-sin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTML
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-03-30 16:16:56 / 修改时间：16:55:03" itemprop="dateCreated datePublished" datetime="2021-03-30T16:16:56+08:00">2021-03-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">前端</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h2><p>能够写出基本的html页面（里面包含图片，链接，文字等网页元素标签）</p>
+<span id="more"></span>
+
+<p><img src="https://i.loli.net/2021/03/30/fZ2qjROEiCgILoD.png" alt="html主体思路.png"></p>
+<h2 id="认识web"><a href="#认识web" class="headerlink" title="认识web"></a>认识web</h2><h3 id="1-认识网页"><a href="#1-认识网页" class="headerlink" title="1.认识网页"></a>1.认识网页</h3><ul>
+<li>网页主要由文字，图像和超链接等元素构成。当然，除了这些元素，网页中还可以包含音频，视频以及Flash等。</li>
+</ul>
+<p>网页有图、链接、文字等元素组成，我么们在后面的任务就是要把这部分网页元素用代码写出来。</p>
+<h3 id="2-浏览器（显示代码）"><a href="#2-浏览器（显示代码）" class="headerlink" title="2.浏览器（显示代码）"></a>2.浏览器（显示代码）</h3><p>浏览器是网页显示、运行的平台，常用的浏览器有IE、火狐（Firefox）、谷歌（Chrome）、Safari和Opera等。</p>
+<p><img src="https://i.loli.net/2021/03/30/k3DnM8APh4xO9yg.png" alt="浏览器.png"></p>
+<p>可能你最熟悉的是 IE浏览器，但是。。。</p>
+<img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/liulan.jpg" >
+
+<h3 id="2-1-查看浏览器占有的市场份额"><a href="#2-1-查看浏览器占有的市场份额" class="headerlink" title="2.1 查看浏览器占有的市场份额"></a>2.1 查看浏览器占有的市场份额</h3><p>查看网站： <a href="http://tongji.baidu.com/data/browser" target="_blank">http://tongji.baidu.com/data/browser</a></p>
+<img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/count.png" />
+
+<p> 2008年，大名鼎鼎的互联网巨头Google公司发布了它的首款浏览器Chrome浏览器。   </p>
+<p> 跟王思聪一样，没办法，生下来人家就是富二代官二代啊，后台太强，而且确实先天能力得天独厚。 </p>
+<h3 id="2-2-常见浏览器内核（了解）"><a href="#2-2-常见浏览器内核（了解）" class="headerlink" title="2.2 常见浏览器内核（了解）"></a>2.2 常见浏览器内核（了解）</h3><p>首先解释一下浏览器内核是什么东西。英文叫做：Rendering Engine，中文翻译很多，排版引擎、解释引擎、渲染引擎，现在流行称为浏览器内核.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">负责读取网页内容，整理讯息，计算网页的显示方式并显示页面.</span><br></pre></td></tr></table></figure>
+
+<p>因为浏览器太多啦， 但是现在主要流行的就是下面几个：</p>
+<table>
+<thead>
+<tr>
+<th align="left">浏览器</th>
+<th align="center">内核</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">IE</td>
+<td align="center">Trident</td>
+<td align="left">IE、猎豹安全、360极速浏览器、百度浏览器</td>
+</tr>
+<tr>
+<td align="left">firefox</td>
+<td align="center">Gecko</td>
+<td align="left">可惜这几年已经没落了，打开速度慢、升级频繁、猪一样的队友flash、神一样的对手chrome。</td>
+</tr>
+<tr>
+<td align="left">Safari</td>
+<td align="center">webkit</td>
+<td align="left">现在很多人错误地把 webkit 叫做 chrome内核（即使 chrome内核已经是 blink 了）。苹果感觉像被别人抢了媳妇，都哭晕再厕所里面了。</td>
+</tr>
+<tr>
+<td align="left">chrome</td>
+<td align="center">Chromium/Blink</td>
+<td align="left">在 Chromium 项目中研发 Blink 渲染引擎（即浏览器核心），内置于 Chrome 浏览器之中。Blink 其实是 WebKit 的分支。大部分国产浏览器最新版都采用Blink内核。二次开发</td>
+</tr>
+<tr>
+<td align="left">Opera</td>
+<td align="center">Presto</td>
+<td align="left">Presto（已经废弃） 是挪威产浏览器 opera 的 “前任” 内核，为何说是 “前任”，因为最新的 opera 浏览器早已将之抛弃从而投入到了谷歌怀抱了。  现在用blink内核。</td>
+</tr>
+</tbody></table>
+<p><strong>拓展阅读：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">移动端的浏览器内核主要说的是系统内置浏览器的内核。</span><br><span class="line"></span><br><span class="line">Android手机而言，使用率最高的就是Webkit内核，大部分国产浏览器宣称的自己的内核，基本上也是属于webkit二次开发。</span><br><span class="line"></span><br><span class="line">iOS以及WP7平台上，由于系统原因，系统大部分自带浏览器内核，一般是Safari或者IE内核Trident的</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-Web标准（重点）"><a href="#3-Web标准（重点）" class="headerlink" title="3. Web标准（重点）"></a>3. Web标准（重点）</h2><p>目标</p>
+<ul>
+<li>记忆<ul>
+<li>能说出网页 中 web 标准三层组成</li>
+</ul>
+</li>
+<li>理解<ul>
+<li>能结合人来表述web标准三层</li>
+</ul>
+</li>
+</ul>
+<p>Web标准不是某一个标准，而是由W3C组织和其他标准化组织制定的一系列标准的集合。</p>
+<p>W3C 万维网联盟是国际最著名的标准化组织。1994年成立后，至今已发布近百项相关万维网的标准，对万维网发展做出了杰出的贡献。</p>
+<p><strong>w3c就类似于现实世界中的联合国。</strong></p>
+<h3 id="3-1-为什么要遵循WEB标准呢？"><a href="#3-1-为什么要遵循WEB标准呢？" class="headerlink" title="3.1 为什么要遵循WEB标准呢？"></a>3.1 为什么要遵循WEB标准呢？</h3><p> 通过以上浏览器的内核不同，我们知道他们渲染或者排版的模式就有些许差异，显示就会有差别。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">问：  哪个方言再全国基本都可以听得懂？ </span><br></pre></td></tr></table></figure>
+
+<img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/bz.png" />
+
+<h3 id="3-2-Web-标准的好处"><a href="#3-2-Web-标准的好处" class="headerlink" title="3.2 Web 标准的好处"></a>3.2 Web 标准的好处</h3><p><em>1</em>、让Web的发展前景更广阔<br><em>2</em>、内容能被更广泛的设备访问<br><em>3</em>、更容易被搜寻引擎搜索<br><em>4</em>、降低网站流量费用<br><em>5</em>、使网站更易于维护<br><em>6</em>、提高页面浏览速度</p>
+<p>专业的人做专业的事。  来呀<del>快活呀</del>反正有大把时间~</p>
+<h3 id="3-3-Web-标准构成"><a href="#3-3-Web-标准构成" class="headerlink" title="3.3 Web 标准构成"></a>3.3 Web 标准构成</h3><p><strong>构成：</strong> 主要包括结构（Structure）、表现（Presentation）和行为（Behavior）三个方面。</p>
+<ul>
+<li>结构标准：结构用于对网页元素进行整理和分类，咱们主要学的是HTML。 对于网页来说最重要的一部分</li>
+</ul>
+<ul>
+<li>表现标准：表现用于设置网页元素的版式、颜色、大小等外观样式，主要指的是CSS</li>
+<li>行为标准：行为是指网页模型的定义及交互的编写，咱们主要学的是 Javascript</li>
+</ul>
+<p> 理想状态我们的源码： .HTML      .css      .js </p>
+<p>直观感受：</p>
+<img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/gx.png" />
+
+<p>总结WEB标准：</p>
+<p>结构标准：   <img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/hb1.png" width="300" />  决定你是否有个好天然身体 </p>
+<p><strong>结构层：通过对语义的分析，可以对其划分结构。具有了结构的内容，将更容易阅读</strong></p>
+ <img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/htmll.jpg" />
+
+
+
+<p>表现标准：   <img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/hb2.png" width="300" />  决定你是否打扮的美丽外观</p>
+<p><strong>表现层：是为了让网页就能展现出灵活多样的显示效果</strong></p>
+ <img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/css.jpg" />
+
+
+
+<p>行为标准：   <img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/hb3.jpg"  width="420"   />  决定你是否有吸引人的行为</p>
+<p><strong>行为层：用户对网页进行操作，网页可以做出响应性的变化。</strong></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>web标准有三层结构，分别是结构（html）、表现（css）和行为（javascript）  </li>
+<li>结构类似人的身体， 表现类似人的着装， 行为类似人的行为动作</li>
+<li>理想状态下，他们三层都是独立的， 放到不同的文件里面</li>
+</ul>
+<h2 id="4-拓展"><a href="#4-拓展" class="headerlink" title="4. 拓展@"></a>4. 拓展@</h2><ul>
+<li><p><strong>介绍一下你对浏览器内核的理解？常见的浏览器内核有哪些？</strong></p>
+<p>浏览器内核包括两部分，渲染引擎和js引擎。渲染引擎负责读取网页内容，整理讯息，计算网页的显示方式并显示页面，js引擎是解析执行js获取网页的动态效果。 后来 JS 引擎越来越独立，内核就倾向于只指渲染引擎。<br>IE：Trident<br>firefox：Gecko<br>chrom、safari：webkit<br>Opera：Presto<br>Microsoft Edge：EdgeHTML</p>
+<p>深度阅读：<a target="_blank" rel="noopener" href="http://blog.csdn.net/summer_15/article/details/71249203">五大主流浏览器内核的源起以及国内各大浏览器内核总结</a> </p>
+</li>
+</ul>
+<h1 id="1-HTML-初识"><a href="#1-HTML-初识" class="headerlink" title="1. HTML 初识"></a>1. HTML 初识</h1><ul>
+<li>HTML 指的是超文本标记语言 (<strong>H</strong>yper <strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage)是用来描述网页的一种语言。</li>
+<li>HTML 不是一种编程语言，而是一种标记语言 (markup language)</li>
+<li>标记语言是一套标记标签 (markup tag)</li>
+</ul>
+<p><strong>所谓超文本，有2层含义：</strong> </p>
+<ol>
+<li>因为它可以加入图片、声音、动画、多媒体等内容（**超越文本限制 **）</li>
+<li>不仅如此，它还可以从一个文件跳转到另一个文件，与世界各地主机的文件连接（**超级链接文本 **）。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span> 我是一个大标题 <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>网页是由网页元素组成的 ， 这些元素是利用html标签描述出来，然后通过浏览器解析，就可以显示给用户了。</p>
+</blockquote>
+<h2 id="1-1-HTML骨架格式"><a href="#1-1-HTML骨架格式" class="headerlink" title="1.1 HTML骨架格式"></a>1.1 HTML骨架格式</h2><p>日常生活的书信，我们要遵循共同的约定。 </p>
+<img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/mess.png" alt="">
+
+<p>同理：HTML 有自己的语言语法骨架格式：（要遵循，要专业） 要求务必非常流畅的默写下来。。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span>     </span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="html骨架标签总结"><a href="#html骨架标签总结" class="headerlink" title="html骨架标签总结"></a>html骨架标签总结</h4><table>
+<thead>
+<tr>
+<th>标签名</th>
+<th align="center">定义</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><html></html></td>
+<td align="center">HTML标签</td>
+<td align="left">页面中最大的标签，我们成为  根标签</td>
+</tr>
+<tr>
+<td><head></head></td>
+<td align="center">文档的头部</td>
+<td align="left">注意在head标签中我们必须要设置的标签是title</td>
+</tr>
+<tr>
+<td><titile></title></td>
+<td align="center">文档的标题</td>
+<td align="left">让页面拥有一个属于自己的网页标题</td>
+</tr>
+<tr>
+<td><body></body></td>
+<td align="center">文档的主体</td>
+<td align="left">元素包含文档的所有内容，页面内容 基本都是放到body里面的</td>
+</tr>
+<tr>
+<td><titile></title></td>
+<td align="center">文档的标题</td>
+<td align="left">让页面拥有一个属于自己的网页标题</td>
+</tr>
+</tbody></table>
+<p>**课堂练习1： **   </p>
+<p>书写我们的第一个HTML 页面。</p>
+<ol>
+<li><p>新建一个demo 的 TXT 文件。</p>
+</li>
+<li><p>里面写入刚才的HTML 骨架。  </p>
+</li>
+<li><p>把后缀名改为 .HTML。</p>
+</li>
+<li><p>右击–谷歌浏览器打开。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span>     </span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>我的第一个页面<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">          黑马洗练  一飞冲天  月薪过万 你我之间 </span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+ <img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/01html%25E9%25AA%25A8%25E6%259E%25B6.jpg">
+
+<p>为了便于记忆，我们请出刚才要辞职回家养猪的二师兄来帮忙， 我称之为  猪八戒记忆法</p>
+<img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/pig.png" width="500" />
+
+
+
+<h4 id="团队约定大小写"><a href="#团队约定大小写" class="headerlink" title="团队约定大小写"></a>团队约定大小写</h4><p>HTML标签名、类名、标签属性和大部分属性值统一用小写</p>
+<p><em>推荐：</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;head&gt;     </span><br><span class="line">        &lt;title&gt;我的第一个页面&lt;&#x2F;title&gt;</span><br><span class="line"> &lt;&#x2F;head&gt;</span><br></pre></td></tr></table></figure>
+
+<p><em>不推荐：</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;HEAD&gt;     </span><br><span class="line">        &lt;TITLE&gt;我的第一个页面&lt;&#x2F;TITLE&gt;</span><br><span class="line">&lt;&#x2F;HEAD&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-HTML元素标签分类"><a href="#1-2-HTML元素标签分类" class="headerlink" title="1.2 HTML元素标签分类"></a>1.2 HTML元素标签分类</h2><p><strong>标签：</strong></p>
+<p>在HTML页面中，带有“&lt; &gt;”符号的元素被称为HTML标签，如上面提到的 &lt;html&gt;、&lt;head&gt;、&lt;body&gt;都是HTML骨架结构标签。</p>
+<p><strong>分类：</strong></p>
+<ol>
+<li>常规元素（双标签）</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;标签名&gt; 内容 &lt;/标签名&gt;   比如 <span class="tag">&lt;<span class="name">body</span>&gt;</span>  我是文字  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>该语法中“&lt;标签名&gt;”表示该标签的作用开始，一般称为“开始标签（start tag）”，“&lt;/标签名&gt;” 表示该标签的作用结束，一般称为“结束标签（end tag）”。</li>
+<li>和开始标签相比，结束标签只是在前面加了一个关闭符“/”。</li>
+<li>我们以后接触的基本都是双标签</li>
+</ul>
+<ol start="2">
+<li>空元素（单标签）</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;标签名 /&gt;  比如  <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>空元素 用单标签来表示， 简单点说，就是里面不需要包含内容， 只有一个开始标签不需要关闭。</li>
+<li>这种单身狗标签非常少，一共没多少，我们多记忆就好</li>
+</ul>
+<blockquote>
+<p>世界上单身狗毕竟是少数的， 大部分还是喜欢成双成对，不要拉下你的另外一半，对待一个双标签要有始有终。</p>
+</blockquote>
+<h2 id="1-3-HTML标签关系"><a href="#1-3-HTML标签关系" class="headerlink" title="1.3 HTML标签关系"></a>1.3 HTML标签关系</h2><p>主要针对于<strong>双标签</strong> 的相互关系分为两种：  请大家务必熟悉记住这种标签关系，因为后面我们标签嵌套特别多，很容易弄混他们的关系。</p>
+<ol>
+<li>嵌套关系</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span>  </span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span> <span class="tag">&lt;/<span class="name">title</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/father.jpg">
+
+<p>2.并列关系</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/xiong.jpg" width="500">
+
+<p><strong>倡议：</strong> </p>
+<blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果两个标签之间的关系是嵌套关系，子元素最好缩进一个tab键的身位（一个tab是4个空格）。如果是并列关系，最好上下对齐。</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
+<p>html双标签 可以分为  有 一种是 父子级 包含关系的标签      一种是 兄弟级 并列关系的标签</p>
+</blockquote>
+<h1 id="2-代码开发工具（书写代码）"><a href="#2-代码开发工具（书写代码）" class="headerlink" title="2. 代码开发工具（书写代码）"></a>2. 代码开发工具（书写代码）</h1><ul>
+<li><p>为了提高我们的开发效率</p>
+</li>
+<li><p>减少代码的出错我们不提倡用记事本开发，我们有更好的犀利哥。</p>
+</li>
+<li><p>Dreamweaver</p>
+</li>
+<li><p>SublimeText</p>
+</li>
+<li><p>WebStorm</p>
+</li>
+<li><p>HBuilder</p>
+</li>
+<li><p>VScode</p>
+</li>
+</ul>
+<p>有人说：</p>
+<p>  普通青年    Dreamweaver</p>
+<p>  文艺青年    sublime</p>
+<p>  高手和傻子  用记事本</p>
+<p>  其实。。。。</p>
+  <img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/node.png" />
+
+
+<p>感觉： 这个feel 倍儿爽 feel feel倍儿爽 爽爽爽爽！</p>
+<p>常多的优点， 最开心的就是非常轻量级，打开速度超快，后面更高的功能，后面再接触。</p>
+<p><strong>sublime生成html骨架小技巧</strong></p>
+<ul>
+<li> 双击打开软件</li>
+<li> 新建文件（ctrl+n）</li>
+<li> 保存（ctrl+s）,保存为：文件名.html （ 注意 后缀名必须是 .html ) </li>
+<li> 放大缩小代码  ctrl+ 加号 键     和 ctrl +   减号键     或者 按住 ctrl  在 滚动鼠标滚轮</li>
+<li>生成页面骨架结构<ul>
+<li>html: 5    按下tab键    或者  </li>
+<li>!    按下tab键</li>
+</ul>
+</li>
+<li>在浏览器中预览页面<ul>
+<li>右键在  浏览器中打开</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-文档类型-lt-DOCTYPE-gt"><a href="#3-文档类型-lt-DOCTYPE-gt" class="headerlink" title="3. 文档类型&lt;!DOCTYPE&gt;"></a>3. 文档类型&lt;!DOCTYPE&gt;</h1><p>同学你用啥手机？你咋回答？</p>
+<p><strong>用法：</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p><strong>作用：</strong></p>
+<!DOCTYPE><p> 声明位于文档中的最前面的位置，处于 <html> 标签之前。此标签可告知浏览器文档使用哪种 HTML 或 XHTML 规范。</p>
+<p>**注意：  **</p>
+<p>一些老网站可能用的还是老版本的文档类型比如 XHTML之类的，但是我们学的是HTML5,而且HTML5的文档类型兼容很好(向下兼容的原则)，所以大家放心的使用HTML5的文档类型就好了。</p>
+   <!DOCTYPE html><p>  就是告诉浏览器按照HTML5 规范解析页面.</p>
+<p><strong>团队约定：</strong></p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTML文件必须加上 DOCTYPE 声明，并统一使用 HTML5 的文档声明</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="4-页面语言lang"><a href="#4-页面语言lang" class="headerlink" title="4. 页面语言lang"></a>4. 页面语言lang</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span>  指定html 语言种类</span><br></pre></td></tr></table></figure>
+
+<p>最常见的2个：</p>
+<ol>
+<li><code>en</code>定义语言为英语</li>
+<li><code>zh-CN</code>定义语言为中文</li>
+</ol>
+<blockquote>
+ <html lang="zh-CN">  指定该html标签 内容 所用的语言为中文
+</blockquote>
+<p><strong>团队约定：</strong></p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">考虑浏览器和操作系统的兼容性，目前仍然使用 zh-CN 属性值</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p><strong>@拓展阅读：</strong></p>
+<p>简单来说，可能对于程序来说没有太大的作用，但是它可以告诉浏览器，搜索引擎，一些处理Html的程序对页面语言内容来做一些对应的处理或者事情。<br>比如可以</p>
+<ul>
+<li>根据根据lang属性来设定不同语言的css样式，或者字体</li>
+<li>告诉搜索引擎做精确的识别</li>
+<li>让语法检查程序做语言识别</li>
+<li>帮助翻译工具做识别</li>
+<li>帮助网页阅读程序做识别<br>等等</li>
+</ul>
+<h1 id="5-字符集"><a href="#5-字符集" class="headerlink" title="5. 字符集"></a>5. 字符集</h1><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">字符集(Character set)是多个字符的集合。</span><br><span class="line"></span><br><span class="line">计算机要准确的处理各种字符集文字，需要进行字符编码，以便计算机能够识别和存储各种文字。</span><br></pre></td></tr></table></figure>
+
+<p>utf-8是目前最常用的字符集编码方式，常用的字符集编码方式还有gbk和gb2312。</p>
+<ul>
+<li>gb2312 简单中文  包括6763个汉字</li>
+<li>BIG5   繁体中文 港澳台等用</li>
+<li>GBK包含全部中文字符    是GB2312的扩展，加入对繁体字的支持，兼容GB2312</li>
+<li>UTF-8则基本包含全世界所有国家需要用到的字符</li>
+<li><strong>这句代码非常关键， 是必须要写的代码，否则可能引起乱码的情况。</strong></li>
+</ul>
+<blockquote>
+<p>这句话是让 html 文件是以 UTF-8 编码保存的， 浏览器根据编码去解码对应的html内容。</p>
+</blockquote>
+<p><strong>团队约定：</strong></p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一般情况下统一使用 &quot;UTF-8&quot; 编码, 请尽量统一写成标准的 &quot;UTF-8&quot;，不要写成 &quot;utf-8&quot; 或 &quot;utf8&quot; 或 &quot;UTF8&quot;。</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="6-HTML标签的语义化"><a href="#6-HTML标签的语义化" class="headerlink" title="6. HTML标签的语义化"></a>6. HTML标签的语义化</h1><p>白话： 所谓标签语义化，就是指标签的含义。</p>
+<ol>
+<li>方便代码的阅读和维护</li>
+<li>同时让浏览器或是网络爬虫可以很好地解析，从而更好分析其中的内容 </li>
+<li>使用语义化标签会具有更好地搜索引擎优化 </li>
+</ol>
+<p>语义是否良好： 当我们去掉CSS之后，网页结构依然组织有序，并且有良好的可读性。(  裸奔起来一样好看 )</p>
+<p>遵循的原则：先确定语义的HTML ，再选合适的CSS。所以，<strong>我们接下来学习html标签，要根据语义去记忆。</strong> HTML网页中任何元素的实现都要依靠HTML标签。</p>
+<h1 id="7-拓展阅读"><a href="#7-拓展阅读" class="headerlink" title="7. 拓展阅读@"></a>7. 拓展阅读@</h1><h2 id="单身狗的由来"><a href="#单身狗的由来" class="headerlink" title="单身狗的由来"></a>单身狗的由来</h2><p>单身狗一词最早是出自网络社区，起源与大话西游有关。</p>
+<p>大话西游之大圣娶亲最后一幕“他好像一条狗”由来。</p>
+ <img src="E:/%25E5%25AD%25A6%25E4%25B9%25A0%25E8%25B5%2584%25E6%2596%2599/1%25E3%2580%2581%25E9%25BB%2591%25E9%25A9%25ACweb%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%2585%25A8%25E5%25A5%2597%25E8%25AF%25BE%25E7%25A8%258B/%25E3%2580%259027%25E3%2580%2591%25E6%25BA%2590%25E7%25A0%2581+%25E8%25AF%25BE%25E4%25BB%25B6+%25E8%25BD%25AF%25E4%25BB%25B6/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-03%2520%25E5%2589%258D%25E7%25AB%25AF%25E5%25BC%2580%25E5%258F%2591%25E5%259F%25BA%25E7%25A1%2580/01-HTML%25E8%25B5%2584%25E6%2596%2599/02.HTML-Day02/%25E7%25AC%2594%25E8%25AE%25B0/media/dog.jpg">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div></div>
+  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="original-sin 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="original-sin 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/30/SSM%E6%95%B4%E5%90%88/" rel="prev" title="SSM整合">
+                  <i class="fa fa-chevron-left"></i> SSM整合
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/31/%E7%A6%81%E6%AD%A2C%E7%9B%98%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/" rel="next" title="禁止C盘安装软件">
+                  禁止C盘安装软件 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">original-sin</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>  -->
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"left","width":210,"height":500,"hOffset":0,"vOffset":-70},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+<script type="text/javascript" src="/js/love.js"></script>
+</html>
