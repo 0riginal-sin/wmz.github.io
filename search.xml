@@ -85,6 +85,60 @@
       </tags>
   </entry>
   <entry>
+    <title>Markdown学习</title>
+    <url>/2021/04/05/Markdown%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h1 id="Markdown-学习"><a href="#Markdown-学习" class="headerlink" title="Markdown 学习"></a>Markdown 学习</h1><h2 id="标题："><a href="#标题：" class="headerlink" title="标题："></a>标题：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># + 空格   : 一级标题</span><br><span class="line">## + 空格   : 二级标题</span><br><span class="line">### + 空格   : 三级标题</span><br><span class="line">#### + 空格   : 四级标题</span><br><span class="line">以此类推共六级标题</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="字体："><a href="#字体：" class="headerlink" title="字体："></a>字体：</h2><p><strong>记事本字体</strong></p>
+<p><em>记事本字体</em></p>
+<p><em><strong>记事本字体</strong></em></p>
+<p><del>记事本字体</del></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">**加粗**   要加粗的字体前后加上两个*</span><br><span class="line">*斜体*   想要变斜的字体前后加上一个*</span><br><span class="line">***斜体加粗***  又要斜体又要加粗的字体前后加上三个*</span><br><span class="line">~~删除线~~   删除线需要在文字的前后加上两个~</span><br></pre></td></tr></table></figure>
+
+<h2 id="引用："><a href="#引用：" class="headerlink" title="引用："></a>引用：</h2><blockquote>
+<p>记事本引用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&gt; + 空格</span><br></pre></td></tr></table></figure>
+
+<h2 id="分割线："><a href="#分割线：" class="headerlink" title="分割线："></a>分割线：</h2><hr>
+<hr>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">--- +空格</span><br><span class="line">*** + 空格</span><br></pre></td></tr></table></figure>
+
+<h2 id="图片："><a href="#图片：" class="headerlink" title="图片："></a>图片：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">![图片名称](图片路径地址)</span><br><span class="line">图片名可不写，路径必填，可以是网络图片，网络地址</span><br><span class="line">!这个感叹号必须是英文符号</span><br><span class="line"></span><br><span class="line">随便找个图演示一下</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/03/31/LzFi5UsY6feHGID.png"></p>
+<h2 id="超链接："><a href="#超链接：" class="headerlink" title="超链接："></a>超链接：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[文本](超链接地址)</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://bnmqaz.cn/">点击跳转</a></p>
+<h2 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h2><h3 id="有序列表："><a href="#有序列表：" class="headerlink" title="有序列表："></a>有序列表：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1. + 空格  下一个行回车就会自动出现， 删掉一行后会自动排序</span><br><span class="line">tab 键  下一级列表</span><br><span class="line">shift + tab 退出</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>a</li>
+<li>b</li>
+<li>c</li>
+</ol>
+<h3 id="无序列表："><a href="#无序列表：" class="headerlink" title="无序列表："></a>无序列表：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">* + 空格 就会出现方块的列表，下一个行回车就会自动出现</span><br><span class="line">- + 空格 同上</span><br><span class="line">tab 键  下一级列表</span><br><span class="line">shift + tab 退出</span><br></pre></td></tr></table></figure>
+
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格:"></a>表格:</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">右键插入表格</span><br><span class="line">Ctrl+T  快捷键</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">​~~~ 回车，也可以加上语言后回车 例： ~~~java 回车</span><br><span class="line">&#96;&#96;&#96; 回车，也可以加上语言后回车 例： &#96;&#96;&#96;xml 回车</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>记事本编辑器</category>
+      </categories>
+  </entry>
+  <entry>
     <title>MyBatis关联映射</title>
     <url>/2021/03/20/MyBatis%E5%85%B3%E8%81%94%E6%98%A0%E5%B0%84/</url>
     <content><![CDATA[<h1 id="1-关联映射-多表查询"><a href="#1-关联映射-多表查询" class="headerlink" title="1.关联映射(多表查询)"></a>1.关联映射(多表查询)</h1><p>数据库中多表之间存在着三种关系，如图所示。<br><img src="https://img-blog.csdnimg.cn/20190904174614140.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JydWNlTGl1X2NvZGU=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
@@ -1053,6 +1107,112 @@
       </tags>
   </entry>
   <entry>
+    <title>Java入门</title>
+    <url>/2021/03/20/java%E5%85%A5%E9%97%A8/</url>
+    <content><![CDATA[<h2 id="Java帝国的诞生"><a href="#Java帝国的诞生" class="headerlink" title="Java帝国的诞生"></a>Java帝国的诞生</h2><h3 id="C-amp-C"><a href="#C-amp-C" class="headerlink" title="C &amp; C++"></a>C &amp; C++</h3><ul>
+<li>1972年 <strong>C</strong> 诞生<ul>
+<li>贴近硬件，运行极快，效率极高</li>
+<li>操作系统，编译器，数据库，网络系统等</li>
+<li>指指针和内存管理</li>
+</ul>
+</li>
+<li>1982年 <strong>C++</strong> 诞生<ul>
+<li>面向对象</li>
+<li>兼容C语言</li>
+<li>图形领域，游戏等</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+
+<p><strong>C++</strong> 底层代码领域，比较复杂，不建议直接学</p>
+<ul>
+<li>我们要建立一个新的语言：<ul>
+<li>语法有点像C</li>
+<li>没有指针</li>
+<li>没有内存管理</li>
+<li>真正的可移植性，<strong>编写一次，到处运行</strong></li>
+<li>面向对象</li>
+<li>类型安全</li>
+<li>高质量的类库</li>
+<li>………</li>
+</ul>
+</li>
+</ul>
+<h3 id="java-初生"><a href="#java-初生" class="headerlink" title="java 初生"></a>java 初生</h3><ul>
+<li>1995年的网页简单粗糙，缺乏互动性</li>
+<li>图形界面程序（Applet）</li>
+</ul>
+<ul>
+<li>Bill Gates说：这是迄今为止设计的最好的语言</li>
+</ul>
+<ul>
+<li>Java 2 标准版（J2SE）：去占领桌面</li>
+<li>Java 2 移动版（J2ME）：去占领手机</li>
+<li>Java 2 企业版（J2EE）：去占领服务器</li>
+</ul>
+<ul>
+<li>大量的巨头加入</li>
+</ul>
+<h3 id="Java发展"><a href="#Java发展" class="headerlink" title="Java发展"></a>Java发展</h3><ul>
+<li>他们基于Java开发了巨多的平台，系统和工具<ul>
+<li>构建工具：Ant，Maven，Jekins</li>
+<li>应用服务：Tomcat，Jetty，Jboss，Websphere，weblogic</li>
+<li>Web开发：Struts，Spring，Hibernate，MyBatis</li>
+<li>开发工具：Eclipse，NetBeans，Intellij IDEA，Jbuilder</li>
+<li>……</li>
+</ul>
+</li>
+</ul>
+<p><strong>Java三高：高可用，高性能，高并发</strong></p>
+<h3 id="Java特性和优势"><a href="#Java特性和优势" class="headerlink" title="Java特性和优势"></a>Java特性和优势</h3><ul>
+<li>简单性</li>
+<li>面向对象</li>
+<li>可移植性</li>
+<li>高性能</li>
+<li>分布式</li>
+<li>动态性</li>
+<li>多线程</li>
+<li>安全性</li>
+<li>健壮性</li>
+</ul>
+<h3 id="Java的三大版本"><a href="#Java的三大版本" class="headerlink" title="Java的三大版本"></a>Java的三大版本</h3><ul>
+<li>JavaSE： 标准版（桌面程序，控制台开发….）</li>
+<li>JavaME：嵌入式开发（手机，小家电….）</li>
+<li>JavaEE：企业级开发（web端，服务器开发….）</li>
+</ul>
+<h3 id="JDK、JRE、JVM"><a href="#JDK、JRE、JVM" class="headerlink" title="JDK、JRE、JVM"></a>JDK、JRE、JVM</h3><ul>
+<li>JDK：Java Development Kit</li>
+<li>JRE：Java Runtime Environment</li>
+<li>JVM：JAVA Virtual Machine</li>
+</ul>
+<p><img src="https://i.loli.net/2021/04/05/BzyISfZ9NXLoD6l.jpg" alt="Java8.0_platform.jpg"></p>
+<h3 id="Java开发环境搭建"><a href="#Java开发环境搭建" class="headerlink" title="Java开发环境搭建"></a>Java开发环境搭建</h3><ul>
+<li><p>JDK下载与安装</p>
+<ul>
+<li>百度搜索下载:  <a href="https://www.oracle.com/java/technologies/javase-downloads.html">jdk</a></li>
+<li>找到对应的版本下载</li>
+</ul>
+</li>
+<li><p>配置环境介绍</p>
+<p><img src="https://i.loli.net/2021/04/05/fWODy1aCprJmoSG.png" alt="java开发环境配置.png"></p>
+<p><img src="https://i.loli.net/2021/04/05/PrnY8j3uAOeyofl.png" alt="JDK环境变量配置.png"></p>
+<p><img src="https://i.loli.net/2021/04/05/BbO54k1GZIEMzyS.png" alt="环境变量配置成功.png"></p>
+</li>
+<li><p>JDK目录介绍</p>
+</li>
+<li><p>HelloWorld及简单语法规则</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java基础</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>java基础语法</title>
     <url>/2021/03/21/java%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/</url>
     <content><![CDATA[<h2 id="java-基础语法"><a href="#java-基础语法" class="headerlink" title="java 基础语法"></a>java 基础语法</h2><h3 id="1-注释"><a href="#1-注释" class="headerlink" title="1.注释"></a>1.注释</h3><ol>
@@ -1456,44 +1616,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JDK安装</title>
-    <url>/2021/03/20/java%E5%85%A5%E9%97%A8/</url>
-    <content><![CDATA[<h2 id="安装jdk"><a href="#安装jdk" class="headerlink" title="安装jdk"></a>安装jdk</h2><ol>
-<li>百度搜索JDK8，找到下载地址</li>
-<li>同意协议，下载电脑对应的版本</li>
-<li>双击安装JDK</li>
-<li><strong>记住安装路径</strong></li>
-<li>配置环境变量</li>
-</ol>
-<span id="more"></span>
-
-<ol>
-<li>我的电脑–&gt;右键–&gt;属性</li>
-<li>配置环境变量JAVA_HOME</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/0riginal-sin/image.github.io/main/java%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE.png"></p>
-<ol start="3">
-<li>然后配置path变量</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/0riginal-sin/image.github.io/main/JDK%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE.png"></p>
-<ol start="4">
-<li>测试jdk是否安装成功<ol>
-<li>windows+r输入cmd打开dos命令窗口</li>
-<li>输入 java -version</li>
-<li>如下图所示，出现版本号就安装成功了</li>
-</ol>
-</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/0riginal-sin/image.github.io/main/%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%E6%88%90%E5%8A%9F.png"></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java基础</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>禁止C盘安装软件</title>
     <url>/2021/03/31/%E7%A6%81%E6%AD%A2C%E7%9B%98%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/</url>
     <content><![CDATA[<h2 id="禁止C盘安装软件"><a href="#禁止C盘安装软件" class="headerlink" title="禁止C盘安装软件"></a>禁止C盘安装软件</h2><p>一般的软件在安装时，系统会将默认路径设置为C:/Program Files/XXXX，而如果按照上面的想法的话，每一个软件都要重新选路径。</p>
@@ -1510,22 +1632,6 @@
       </categories>
       <tags>
         <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>三百六十行，行行报异常</title>
-    <url>/2021/03/22/%E9%94%99%E8%AF%AF%E6%8A%A5%E5%91%8A/</url>
-    <content><![CDATA[<p><strong>报错：</strong>Invalid bound statement (not found): cn.kgc.dao.UserMapper.getList</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">org.apache.ibatis.binding.BindingException: <span class="function">Invalid bound <span class="title">statement</span> <span class="params">(not found)</span>: cn.kgc.dao.UserMapper.getList</span></span><br><span class="line"><span class="function">	at org.apache.ibatis.binding.MapperMethod$SqlCommand.&lt;init&gt;<span class="params">(MapperMethod.java:<span class="number">178</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.ibatis.binding.MapperMethod.&lt;init&gt;<span class="params">(MapperMethod.java:<span class="number">38</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.ibatis.binding.MapperProxy.<span class="title">cachedMapperMethod</span><span class="params">(MapperProxy.java:<span class="number">49</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.ibatis.binding.MapperProxy.<span class="title">invoke</span><span class="params">(MapperProxy.java:<span class="number">42</span>)</span></span></span><br><span class="line"><span class="function">	at com.sun.proxy.$Proxy10.<span class="title">getList</span><span class="params">(Unknown Source)</span></span></span><br><span class="line"><span class="function">	at cn.kgc.service.impl.UserServiceImpl.<span class="title">getList</span><span class="params">(UserServiceImpl.java:<span class="number">19</span>)</span></span></span><br><span class="line"><span class="function">	at cn.kgc.controller.UserController.<span class="title">getList</span><span class="params">(UserController.java:<span class="number">24</span>)</span></span></span><br><span class="line"><span class="function">	at sun.reflect.NativeMethodAccessorImpl.<span class="title">invoke0</span><span class="params">(Native Method)</span></span></span><br><span class="line"><span class="function">	at sun.reflect.NativeMethodAccessorImpl.<span class="title">invoke</span><span class="params">(NativeMethodAccessorImpl.java:<span class="number">62</span>)</span></span></span><br><span class="line"><span class="function">	at sun.reflect.DelegatingMethodAccessorImpl.<span class="title">invoke</span><span class="params">(DelegatingMethodAccessorImpl.java:<span class="number">43</span>)</span></span></span><br><span class="line"><span class="function">	at java.lang.reflect.Method.<span class="title">invoke</span><span class="params">(Method.java:<span class="number">498</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.method.support.InvocableHandlerMethod.<span class="title">invoke</span><span class="params">(InvocableHandlerMethod.java:<span class="number">215</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.method.support.InvocableHandlerMethod.<span class="title">invokeForRequest</span><span class="params">(InvocableHandlerMethod.java:<span class="number">132</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.<span class="title">invokeAndHandle</span><span class="params">(ServletInvocableHandlerMethod.java:<span class="number">104</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.<span class="title">invokeHandleMethod</span><span class="params">(RequestMappingHandlerAdapter.java:<span class="number">743</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.<span class="title">handleInternal</span><span class="params">(RequestMappingHandlerAdapter.java:<span class="number">672</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.<span class="title">handle</span><span class="params">(AbstractHandlerMethodAdapter.java:<span class="number">82</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.servlet.DispatcherServlet.<span class="title">doDispatch</span><span class="params">(DispatcherServlet.java:<span class="number">919</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.servlet.DispatcherServlet.<span class="title">doService</span><span class="params">(DispatcherServlet.java:<span class="number">851</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.servlet.FrameworkServlet.<span class="title">processRequest</span><span class="params">(FrameworkServlet.java:<span class="number">953</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.servlet.FrameworkServlet.<span class="title">doGet</span><span class="params">(FrameworkServlet.java:<span class="number">844</span>)</span></span></span><br><span class="line"><span class="function">	at javax.servlet.http.HttpServlet.<span class="title">service</span><span class="params">(HttpServlet.java:<span class="number">626</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.servlet.FrameworkServlet.<span class="title">service</span><span class="params">(FrameworkServlet.java:<span class="number">829</span>)</span></span></span><br><span class="line"><span class="function">	at javax.servlet.http.HttpServlet.<span class="title">service</span><span class="params">(HttpServlet.java:<span class="number">733</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.core.ApplicationFilterChain.<span class="title">internalDoFilter</span><span class="params">(ApplicationFilterChain.java:<span class="number">231</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.core.ApplicationFilterChain.<span class="title">doFilter</span><span class="params">(ApplicationFilterChain.java:<span class="number">166</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.tomcat.websocket.server.WsFilter.<span class="title">doFilter</span><span class="params">(WsFilter.java:<span class="number">53</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.core.ApplicationFilterChain.<span class="title">internalDoFilter</span><span class="params">(ApplicationFilterChain.java:<span class="number">193</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.core.ApplicationFilterChain.<span class="title">doFilter</span><span class="params">(ApplicationFilterChain.java:<span class="number">166</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.filter.CharacterEncodingFilter.<span class="title">doFilterInternal</span><span class="params">(CharacterEncodingFilter.java:<span class="number">88</span>)</span></span></span><br><span class="line"><span class="function">	at org.springframework.web.filter.OncePerRequestFilter.<span class="title">doFilter</span><span class="params">(OncePerRequestFilter.java:<span class="number">106</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.core.ApplicationFilterChain.<span class="title">internalDoFilter</span><span class="params">(ApplicationFilterChain.java:<span class="number">193</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.core.ApplicationFilterChain.<span class="title">doFilter</span><span class="params">(ApplicationFilterChain.java:<span class="number">166</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.core.StandardWrapperValve.<span class="title">invoke</span><span class="params">(StandardWrapperValve.java:<span class="number">202</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.core.StandardContextValve.<span class="title">invoke</span><span class="params">(StandardContextValve.java:<span class="number">97</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.authenticator.AuthenticatorBase.<span class="title">invoke</span><span class="params">(AuthenticatorBase.java:<span class="number">542</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.core.StandardHostValve.<span class="title">invoke</span><span class="params">(StandardHostValve.java:<span class="number">143</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.valves.ErrorReportValve.<span class="title">invoke</span><span class="params">(ErrorReportValve.java:<span class="number">92</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.valves.AbstractAccessLogValve.<span class="title">invoke</span><span class="params">(AbstractAccessLogValve.java:<span class="number">690</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.core.StandardEngineValve.<span class="title">invoke</span><span class="params">(StandardEngineValve.java:<span class="number">78</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.catalina.connector.CoyoteAdapter.<span class="title">service</span><span class="params">(CoyoteAdapter.java:<span class="number">343</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.coyote.http11.Http11Processor.<span class="title">service</span><span class="params">(Http11Processor.java:<span class="number">374</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.coyote.AbstractProcessorLight.<span class="title">process</span><span class="params">(AbstractProcessorLight.java:<span class="number">65</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.coyote.AbstractProtocol$ConnectionHandler.<span class="title">process</span><span class="params">(AbstractProtocol.java:<span class="number">888</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.<span class="title">doRun</span><span class="params">(NioEndpoint.java:<span class="number">1597</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.tomcat.util.net.SocketProcessorBase.<span class="title">run</span><span class="params">(SocketProcessorBase.java:<span class="number">49</span>)</span></span></span><br><span class="line"><span class="function">	at java.util.concurrent.ThreadPoolExecutor.<span class="title">runWorker</span><span class="params">(ThreadPoolExecutor.java:<span class="number">1149</span>)</span></span></span><br><span class="line"><span class="function">	at java.util.concurrent.ThreadPoolExecutor$Worker.<span class="title">run</span><span class="params">(ThreadPoolExecutor.java:<span class="number">624</span>)</span></span></span><br><span class="line"><span class="function">	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.<span class="title">run</span><span class="params">(TaskThread.java:<span class="number">61</span>)</span></span></span><br><span class="line"><span class="function">	at java.lang.Thread.<span class="title">run</span><span class="params">(Thread.java:<span class="number">748</span>)</span></span></span><br></pre></td></tr></table></figure>
-
-<p><strong>解决方法：</strong></p>
-<p><img src="https://i.loli.net/2021/03/24/9Fs2AvT8fOcDSK5.png" alt="错误报告.jpg"></p>
-]]></content>
-      <categories>
-        <category>代码报错信息</category>
-      </categories>
-      <tags>
-        <tag>异常报告</tag>
       </tags>
   </entry>
   <entry>
